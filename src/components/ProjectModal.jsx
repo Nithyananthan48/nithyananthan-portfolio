@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, ExternalLink, CheckCircle2 } from "lucide-react";
+import { X, ExternalLink, CheckCircle2, Layers, Terminal } from "lucide-react";
 import { GithubIcon } from "./Icons";
 import { easeSkillClass } from "../utils/motion";
 
@@ -26,7 +26,7 @@ export default function ProjectModal({ project, onClose }) {
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
         transition={{ duration: 0.25 }}
-        className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/60 backdrop-blur-md"
+        className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/80 backdrop-blur-md"
         onClick={onClose}
         role="dialog"
         aria-modal="true"
@@ -37,45 +37,43 @@ export default function ProjectModal({ project, onClose }) {
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.95, y: 20 }}
           transition={{ duration: 0.35, ease: easeSkillClass }}
-          className="relative w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-[28px] bg-white dark:bg-[#141a26] border border-[#e8e3d9] dark:border-[#232d3f] shadow-2xl p-6 sm:p-8 text-[#131312] dark:text-[#f3f4f6]"
+          className="relative w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-2xl bg-[#0f0f16] border border-white/15 shadow-[0_0_50px_rgba(0,0,0,0.8)] p-6 sm:p-8 text-white"
           onClick={(e) => e.stopPropagation()}
         >
           {/* Header */}
-          <div className="flex items-start justify-between gap-4 pb-4 border-b border-[#e8e3d9] dark:border-[#232d3f]">
+          <div className="flex items-start justify-between gap-4 pb-4 border-b border-white/10">
             <div>
               <div className="flex items-center gap-2 mb-2 flex-wrap">
-                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono font-semibold bg-[#fe5922]/10 text-[#fe5922] dark:bg-[#38bdf8]/10 dark:text-[#38bdf8] border border-[#fe5922]/20 dark:border-[#38bdf8]/20">
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono font-semibold bg-[#ff2222]/15 text-[#ff4444] border border-[#ff2222]/30">
                   {project.badge}
                 </span>
-                <span className="text-xs text-[#676561] dark:text-[#94a3b8] font-mono">
+                <span className="text-xs text-[#a1a1aa] font-mono">
                   {project.category}
                 </span>
               </div>
-              <h3 id="modal-project-title" className="text-2xl sm:text-3xl font-extrabold text-[#131312] dark:text-white">
+              <h3 id="modal-project-title" className="text-2xl sm:text-3xl font-extrabold text-white font-jost">
                 {project.title}
               </h3>
             </div>
             
-            <motion.button
+            <button
               type="button"
               onClick={onClose}
-              whileHover={{ scale: 1.1, rotate: 90 }}
-              whileTap={{ scale: 0.9 }}
-              transition={{ duration: 0.2 }}
-              className="p-2 rounded-full text-[#676561] dark:text-[#94a3b8] hover:text-[#131312] dark:hover:text-white hover:bg-black/5 dark:hover:bg-white/5 transition-colors focus:outline-none cursor-pointer"
+              className="p-2 rounded-lg text-[#9e9ea8] hover:text-white hover:bg-white/10 transition-colors focus:outline-none cursor-pointer"
               aria-label="Close modal"
             >
               <X className="w-5 h-5" />
-            </motion.button>
+            </button>
           </div>
 
           {/* Body Content */}
           <div className="mt-6 space-y-6">
             <div>
-              <h4 className="text-xs font-mono uppercase tracking-wider text-[#676561] dark:text-[#94a3b8] mb-2 font-bold">
-                Project Architecture & Overview
+              <h4 className="text-xs font-mono uppercase tracking-wider text-[#ff4444] mb-2 font-bold flex items-center gap-2">
+                <Terminal size={14} />
+                <span>Architecture & Overview</span>
               </h4>
-              <p className="text-[#5e5d59] dark:text-[#94a3b8] leading-relaxed text-sm sm:text-base">
+              <p className="text-[#a1a1aa] leading-relaxed text-sm sm:text-base">
                 {project.longDescription || project.shortDescription}
               </p>
             </div>
@@ -84,31 +82,30 @@ export default function ProjectModal({ project, onClose }) {
             {project.stats && (
               <div className="grid grid-cols-3 gap-3">
                 {project.stats.map((st, i) => (
-                  <motion.div
+                  <div
                     key={i}
-                    whileHover={{ y: -2 }}
-                    className="p-3 rounded-2xl bg-[#faf8f5] dark:bg-[#0c1017] border border-[#e8e3d9] dark:border-[#232d3f] text-center"
+                    className="p-3 rounded-xl bg-white/[0.03] border border-white/10 text-center"
                   >
-                    <div className="text-[10px] text-[#676561] dark:text-[#94a3b8] font-mono uppercase tracking-wider mb-1">{st.label}</div>
-                    <div className="text-xs sm:text-sm font-bold text-[#131312] dark:text-white font-mono">{st.value}</div>
-                  </motion.div>
+                    <div className="text-[10px] text-[#71717a] font-mono uppercase tracking-wider mb-1">{st.label}</div>
+                    <div className="text-xs sm:text-sm font-bold text-white font-mono">{st.value}</div>
+                  </div>
                 ))}
               </div>
             )}
 
             {/* Key Features list */}
             <div>
-              <h4 className="text-xs font-mono uppercase tracking-wider text-[#676561] dark:text-[#94a3b8] mb-3 font-bold flex items-center gap-1.5">
-                <CheckCircle2 className="w-4 h-4 text-[#fe5922] dark:text-[#38bdf8]" />
-                Technical Implementation Details
+              <h4 className="text-xs font-mono uppercase tracking-wider text-[#ff4444] mb-3 font-bold flex items-center gap-2">
+                <CheckCircle2 className="w-4 h-4 text-[#ff2222]" />
+                <span>Technical Implementation Details</span>
               </h4>
               <ul className="grid grid-cols-1 gap-2.5">
                 {project.features.map((feat, idx) => (
                   <li
                     key={idx}
-                    className="flex items-start gap-2.5 text-xs sm:text-sm text-[#131312] dark:text-[#f3f4f6] p-3 rounded-xl bg-[#faf8f5] dark:bg-[#0c1017] border border-[#e8e3d9] dark:border-[#232d3f]"
+                    className="flex items-start gap-2.5 text-xs sm:text-sm text-[#e4e4e7] p-3 rounded-xl bg-white/[0.02] border border-white/5"
                   >
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#fe5922] dark:bg-[#38bdf8] mt-2 shrink-0"></span>
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#ff2222] mt-2 shrink-0"></span>
                     <span>{feat}</span>
                   </li>
                 ))}
@@ -117,14 +114,14 @@ export default function ProjectModal({ project, onClose }) {
 
             {/* Technologies used */}
             <div>
-              <h4 className="text-xs font-mono uppercase tracking-wider text-[#676561] dark:text-[#94a3b8] mb-2.5 font-bold">
-                Verified Stack
+              <h4 className="text-xs font-mono uppercase tracking-wider text-[#ff4444] mb-2.5 font-bold">
+                Verified Tech Stack
               </h4>
               <div className="flex flex-wrap gap-2">
                 {project.technologies.map((t) => (
                   <span
                     key={t}
-                    className="px-3 py-1 rounded-lg text-xs font-mono font-medium bg-[#faf8f5] dark:bg-[#0c1017] border border-[#e8e3d9] dark:border-[#232d3f] text-[#131312] dark:text-white"
+                    className="px-3 py-1 rounded-lg text-xs font-mono font-medium bg-white/5 border border-white/10 text-white"
                   >
                     {t}
                   </span>
@@ -134,33 +131,30 @@ export default function ProjectModal({ project, onClose }) {
           </div>
 
           {/* Footer actions */}
-          <div className="mt-8 pt-4 border-t border-[#e8e3d9] dark:border-[#232d3f] flex items-center justify-between gap-3 flex-wrap">
-            <div className="text-xs font-mono text-[#676561] dark:text-[#94a3b8]">
-              ID // {project.id}
+          <div className="mt-8 pt-4 border-t border-white/10 flex items-center justify-between gap-3 flex-wrap">
+            <div className="text-xs font-mono text-[#71717a]">
+              PROJECT_ID // {project.id}
             </div>
-            <div className="flex items-center gap-2">
-              <motion.a
+            <div className="flex items-center gap-3">
+              <a
                 href={project.githubUrl}
                 target="_blank"
                 rel="noreferrer"
-                whileHover={{ y: -2, scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                className="sc-btn-primary text-xs py-2 px-4 inline-flex items-center gap-2"
+                className="py-2.5 px-4 rounded-lg bg-[#ff2222] hover:bg-[#ff3d3d] text-white font-mono text-xs font-bold inline-flex items-center gap-2 transition-all shadow-[0_0_15px_rgba(255,34,34,0.4)]"
               >
                 <GithubIcon className="w-4 h-4" />
-                <span>View Repository</span>
-              </motion.a>
+                <span>VIEW REPOSITORY</span>
+              </a>
               {project.liveDemoUrl && (
-                <motion.a
+                <a
                   href={project.liveDemoUrl}
                   target="_blank"
                   rel="noreferrer"
-                  whileHover={{ y: -2 }}
-                  className="sc-btn-secondary text-xs py-2 px-4 inline-flex items-center gap-1.5 text-emerald-600 dark:text-emerald-400"
+                  className="py-2.5 px-4 rounded-lg bg-white/10 hover:bg-white/20 text-white font-mono text-xs inline-flex items-center gap-1.5 transition-all"
                 >
                   <ExternalLink className="w-3.5 h-3.5" />
-                  <span>Live Demo</span>
-                </motion.a>
+                  <span>LIVE DEMO</span>
+                </a>
               )}
             </div>
           </div>
