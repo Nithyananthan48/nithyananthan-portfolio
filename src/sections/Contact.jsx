@@ -7,13 +7,16 @@ import {
   Copy, 
   Sparkles,
   Phone,
-  ArrowUpRight
+  MapPin,
+  ArrowRight,
+  ExternalLink
 } from "lucide-react";
 import { GithubIcon, LinkedinIcon, WhatsappIcon } from "../components/Icons";
 import { personalInfo } from "../data/portfolioData";
 
 export default function Contact() {
   const [copied, setCopied] = useState(false);
+  const [formSubmitted, setFormSubmitted] = useState(false);
   const [formState, setFormState] = useState({
     name: "",
     email: "",
@@ -29,12 +32,17 @@ export default function Contact() {
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
+    if (!formState.email || !formState.message) return;
+
+    // Trigger user's mail client transparently with prefilled fields
     const mailtoSubject = encodeURIComponent(
-      formState.subject || `Portfolio Inquiry from ${formState.name || "Recruiter"}`
+      formState.subject || `Full Stack Developer Inquiry from ${formState.name || "Recruiter"}`
     );
     const mailtoBody = encodeURIComponent(
       `Name: ${formState.name}\nEmail: ${formState.email}\n\nMessage:\n${formState.message}`
     );
+    
+    setFormSubmitted(true);
     window.location.href = `mailto:${personalInfo.email}?subject=${mailtoSubject}&body=${mailtoBody}`;
   };
 
@@ -42,46 +50,51 @@ export default function Contact() {
     <section id="contact" className="py-20 md:py-28 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Header */}
+        {/* Header — SkillClass Editorial Tag & Heading */}
         <div className="flex flex-col items-center text-center mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/25 text-cyan-600 dark:text-cyan-400 text-xs font-mono uppercase tracking-widest mb-3">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white dark:bg-[#141a26] border border-[#e8e3d9] dark:border-[#232d3f] text-[#fe5922] dark:text-[#38bdf8] text-xs font-mono uppercase tracking-widest mb-4 shadow-sm">
             <Mail className="w-3.5 h-3.5" />
-            <span>08 · Get In Touch</span>
+            <span>Get in Touch</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight">
-            Let's Build <span className="gradient-text">Something Together</span>
+
+          <h2 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-[#131312] dark:text-white tracking-tight max-w-3xl leading-[1.12]">
+            Let’s build something{" "}
+            <span className="font-editorial-italic font-normal text-[#fe5922] dark:text-[#38bdf8]">
+              worth keeping.
+            </span>
           </h2>
-          <p className="text-slate-600 dark:text-slate-300 max-w-2xl text-sm sm:text-base mt-3 leading-relaxed">
-            I’m currently looking for opportunities where I can apply my development skills, learn from real-world projects and grow as a Full Stack Developer.
+          
+          <p className="text-[#5e5d59] dark:text-[#94a3b8] max-w-xl text-sm sm:text-base mt-3">
+            Open for Junior Full Stack Developer and Frontend Developer opportunities. Let’s talk about how I can contribute to your team.
           </p>
         </div>
 
-        {/* Two-column layout: Direct Contact Cards on Left, Interactive Message Composer on Right */}
+        {/* 2-Column Layout matching SkillClass Reservation / Contact section */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 max-w-6xl mx-auto">
           
-          {/* Left: Contact Info & Action Buttons */}
+          {/* Left Column: Direct Info Cards */}
           <div className="lg:col-span-5 space-y-4">
             
             {/* Direct Email Card */}
-            <div className="glass-panel p-5 rounded-2xl border-slate-200 dark:border-slate-800/80 space-y-3">
+            <div className="sc-card p-6 space-y-3">
               <div className="flex items-center justify-between">
-                <span className="text-xs font-mono text-slate-500 dark:text-slate-400 uppercase tracking-wider font-semibold">
+                <span className="text-xs font-mono uppercase tracking-wider text-[#676561] dark:text-[#94a3b8] font-semibold">
                   Direct Email
                 </span>
                 <button
                   type="button"
                   onClick={handleCopyEmail}
-                  className="inline-flex items-center gap-1 text-xs text-cyan-600 dark:text-cyan-400 hover:text-cyan-700 dark:hover:text-cyan-300 transition-colors cursor-pointer"
+                  className="inline-flex items-center gap-1.5 text-xs text-[#fe5922] dark:text-[#38bdf8] hover:underline font-mono cursor-pointer"
                 >
                   {copied ? (
                     <>
                       <Check className="w-3.5 h-3.5 text-emerald-500" />
-                      <span className="text-emerald-600 dark:text-emerald-400 font-mono font-semibold">Copied!</span>
+                      <span>Copied!</span>
                     </>
                   ) : (
                     <>
                       <Copy className="w-3.5 h-3.5" />
-                      <span className="font-mono">Copy</span>
+                      <span>Copy</span>
                     </>
                   )}
                 </button>
@@ -89,174 +102,183 @@ export default function Contact() {
 
               <a
                 href={`mailto:${personalInfo.email}`}
-                className="text-base sm:text-lg font-bold text-slate-900 dark:text-white hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors block font-mono break-all"
+                className="text-lg sm:text-xl font-bold text-[#131312] dark:text-white hover:text-[#fe5922] dark:hover:text-[#38bdf8] transition-colors block font-mono break-all"
               >
                 {personalInfo.email}
               </a>
 
               <a
                 href={`mailto:${personalInfo.email}`}
-                className="inline-flex items-center justify-center gap-2 w-full py-2.5 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-semibold text-xs transition-all shadow-md shadow-cyan-500/20"
+                className="sc-btn-primary w-full text-xs py-2.5"
               >
-                <Mail className="w-3.5 h-3.5" />
-                <span>Send Email</span>
+                <Mail className="w-4 h-4" />
+                <span>Send Direct Email</span>
               </a>
             </div>
 
-            {/* Direct WhatsApp Card */}
-            <div className="glass-panel p-5 rounded-2xl border-slate-200 dark:border-slate-800/80 space-y-3">
-              <div className="text-xs font-mono text-slate-500 dark:text-slate-400 uppercase tracking-wider font-semibold">
-                Phone & WhatsApp
+            {/* Phone & WhatsApp Card */}
+            <div className="sc-card p-6 space-y-3">
+              <div className="text-xs font-mono uppercase tracking-wider text-[#676561] dark:text-[#94a3b8] font-semibold">
+                Phone & Instant Chat
               </div>
-              <div className="text-base sm:text-lg font-bold text-slate-900 dark:text-white font-mono">
+
+              <div className="text-lg font-bold text-[#131312] dark:text-white font-mono">
                 {personalInfo.phone}
               </div>
-              <div className="grid grid-cols-2 gap-2">
+
+              <div className="flex items-center gap-2 pt-1">
+                <a
+                  href={`tel:${personalInfo.phone}`}
+                  className="sc-btn-secondary flex-1 text-xs py-2.5"
+                >
+                  <Phone className="w-3.5 h-3.5" />
+                  <span>Call Now</span>
+                </a>
+
                 <a
                   href={personalInfo.whatsappUrl}
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex items-center justify-center gap-1.5 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-semibold text-xs transition-all shadow-md shadow-emerald-500/20"
+                  className="inline-flex items-center justify-center gap-1.5 flex-1 py-2.5 px-4 rounded-full text-xs font-semibold bg-emerald-600 hover:bg-emerald-500 text-white transition-all shadow-sm"
                 >
                   <WhatsappIcon className="w-3.5 h-3.5" />
-                  <span>WhatsApp Me</span>
+                  <span>WhatsApp</span>
+                </a>
+              </div>
+            </div>
+
+            {/* Location & Social Links Card */}
+            <div className="sc-card p-6 space-y-4">
+              <div className="flex items-start gap-3">
+                <div className="w-10 h-10 rounded-xl bg-white dark:bg-[#1a2233] border border-[#e8e3d9] dark:border-[#232d3f] flex items-center justify-center text-[#fe5922] dark:text-[#38bdf8] shrink-0 shadow-sm">
+                  <MapPin className="w-5 h-5" />
+                </div>
+                <div>
+                  <div className="text-xs font-mono uppercase tracking-wider text-[#676561] dark:text-[#94a3b8]">
+                    Based in
+                  </div>
+                  <div className="text-sm font-bold text-[#131312] dark:text-white">
+                    {personalInfo.location}
+                  </div>
+                </div>
+              </div>
+
+              <div className="pt-3 border-t border-[#e8e3d9] dark:border-[#232d3f] flex items-center gap-3">
+                <a
+                  href={personalInfo.githubUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="sc-btn-secondary flex-1 text-xs py-2"
+                >
+                  <GithubIcon className="w-3.5 h-3.5" />
+                  <span>GitHub</span>
                 </a>
 
                 <a
-                  href={`tel:${personalInfo.phone.replace(/\s+/g, '')}`}
-                  className="inline-flex items-center justify-center gap-1.5 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 font-medium text-xs border border-slate-200 dark:border-slate-700 transition-all"
+                  href={personalInfo.linkedinUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="sc-btn-secondary flex-1 text-xs py-2"
                 >
-                  <Phone className="w-3.5 h-3.5 text-cyan-600 dark:text-cyan-400" />
-                  <span>Call Directly</span>
+                  <LinkedinIcon className="w-3.5 h-3.5 text-blue-600" />
+                  <span>LinkedIn</span>
                 </a>
               </div>
-            </div>
-
-            {/* Professional Profiles */}
-            <div className="grid grid-cols-2 gap-3">
-              <a
-                href={personalInfo.linkedinUrl}
-                target="_blank"
-                rel="noreferrer"
-                className="glass-panel p-4 rounded-2xl flex items-center justify-between group hover:border-cyan-500/40 transition-all"
-              >
-                <div className="flex items-center gap-2.5">
-                  <LinkedinIcon className="w-4 h-4 text-cyan-600 dark:text-cyan-400" />
-                  <span className="text-xs font-semibold text-slate-900 dark:text-white group-hover:text-cyan-600 dark:group-hover:text-cyan-300">LinkedIn</span>
-                </div>
-                <ArrowUpRight className="w-3.5 h-3.5 text-slate-400 dark:text-slate-500 group-hover:text-cyan-600 dark:group-hover:text-cyan-400 transition-colors" />
-              </a>
-
-              <a
-                href={personalInfo.githubUrl}
-                target="_blank"
-                rel="noreferrer"
-                className="glass-panel p-4 rounded-2xl flex items-center justify-between group hover:border-cyan-500/40 transition-all"
-              >
-                <div className="flex items-center gap-2.5">
-                  <GithubIcon className="w-4 h-4 text-cyan-600 dark:text-cyan-400" />
-                  <span className="text-xs font-semibold text-slate-900 dark:text-white group-hover:text-cyan-600 dark:group-hover:text-cyan-300">GitHub</span>
-                </div>
-                <ArrowUpRight className="w-3.5 h-3.5 text-slate-400 dark:text-slate-500 group-hover:text-cyan-600 dark:group-hover:text-cyan-400 transition-colors" />
-              </a>
-            </div>
-
-            {/* Download Resume Banner Card */}
-            <div className="p-5 rounded-2xl bg-gradient-to-r from-cyan-50 to-indigo-50 dark:from-cyan-950/60 dark:to-indigo-950/60 border border-cyan-200 dark:border-cyan-800/50 flex items-center justify-between gap-4 shadow-sm">
-              <div>
-                <div className="text-xs font-mono uppercase tracking-wider text-cyan-700 dark:text-cyan-400 font-semibold">Curriculum Vitae</div>
-                <div className="text-sm font-bold text-slate-900 dark:text-white mt-0.5">Download Complete Resume</div>
-              </div>
-              <a
-                href={personalInfo.resumePath}
-                download="Nithyananthan_Full_Stack_Developer_Resume.pdf"
-                className="px-4 py-2.5 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold text-xs flex items-center gap-2 shrink-0 transition-all shadow-md shadow-cyan-500/20 cursor-pointer"
-              >
-                <FileDown className="w-4 h-4" />
-                <span>Resume PDF</span>
-              </a>
             </div>
 
           </div>
 
-          {/* Right: Interactive Message Composer */}
+          {/* Right Column: SkillClass Reservation-style Contact Form */}
           <div className="lg:col-span-7">
-            <div className="glass-panel p-6 sm:p-8 rounded-3xl space-y-5">
-              <div className="pb-3 border-b border-slate-200 dark:border-slate-800/80">
-                <h3 className="text-xl font-bold text-slate-900 dark:text-white">
-                  Send a Direct Message
+            <div className="sc-card p-7 sm:p-9 space-y-6">
+              
+              <div>
+                <h3 className="text-xl sm:text-2xl font-bold text-[#131312] dark:text-white">
+                  Send an Inquiry
                 </h3>
-                <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
-                  Draft an inquiry or opportunity details. It will open your pre-formatted mail client.
+                <p className="text-xs sm:text-sm text-[#5e5d59] dark:text-[#94a3b8] mt-1">
+                  Fill out the details below. This form prepares and launches your email client directly with all your information pre-filled.
                 </p>
               </div>
 
               <form onSubmit={handleFormSubmit} className="space-y-4">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-xs font-mono text-slate-700 dark:text-slate-300 mb-1.5 uppercase font-semibold">
+                  {/* Name */}
+                  <div className="space-y-1.5">
+                    <label className="text-xs font-mono font-medium text-[#131312] dark:text-white">
                       Your Name
                     </label>
                     <input
                       type="text"
                       required
-                      placeholder="e.g. Alex Smith"
+                      placeholder="e.g. Sarah Jenkins"
                       value={formState.name}
                       onChange={(e) => setFormState({ ...formState, name: e.target.value })}
-                      className="w-full px-4 py-2.5 rounded-xl bg-white dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 focus:border-cyan-500/80 focus:ring-2 focus:ring-cyan-500/20 text-slate-900 dark:text-white text-sm placeholder:text-slate-400 dark:placeholder:text-slate-600 outline-none transition-all shadow-sm dark:shadow-none"
+                      className="w-full px-4 py-3 rounded-xl bg-[#faf8f5] dark:bg-[#0c1017] border border-[#e8e3d9] dark:border-[#232d3f] text-sm text-[#131312] dark:text-white focus:outline-none focus:border-[#fe5922] dark:focus:border-[#38bdf8] transition-colors"
                     />
                   </div>
-                  <div>
-                    <label className="block text-xs font-mono text-slate-700 dark:text-slate-300 mb-1.5 uppercase font-semibold">
-                      Your Email
+
+                  {/* Email */}
+                  <div className="space-y-1.5">
+                    <label className="text-xs font-mono font-medium text-[#131312] dark:text-white">
+                      Your Email *
                     </label>
                     <input
                       type="email"
                       required
-                      placeholder="alex@company.com"
+                      placeholder="sarah@company.com"
                       value={formState.email}
                       onChange={(e) => setFormState({ ...formState, email: e.target.value })}
-                      className="w-full px-4 py-2.5 rounded-xl bg-white dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 focus:border-cyan-500/80 focus:ring-2 focus:ring-cyan-500/20 text-slate-900 dark:text-white text-sm placeholder:text-slate-400 dark:placeholder:text-slate-600 outline-none transition-all shadow-sm dark:shadow-none"
+                      className="w-full px-4 py-3 rounded-xl bg-[#faf8f5] dark:bg-[#0c1017] border border-[#e8e3d9] dark:border-[#232d3f] text-sm text-[#131312] dark:text-white focus:outline-none focus:border-[#fe5922] dark:focus:border-[#38bdf8] transition-colors"
                     />
                   </div>
                 </div>
 
-                <div>
-                  <label className="block text-xs font-mono text-slate-700 dark:text-slate-300 mb-1.5 uppercase font-semibold">
-                    Subject / Opportunity
+                {/* Subject */}
+                <div className="space-y-1.5">
+                  <label className="text-xs font-mono font-medium text-[#131312] dark:text-white">
+                    Subject / Role Opportunity
                   </label>
                   <input
                     type="text"
-                    required
-                    placeholder="Full Stack Developer Role / Project Collaboration"
+                    placeholder="e.g. Full Stack Developer Opening / Technical Interview"
                     value={formState.subject}
                     onChange={(e) => setFormState({ ...formState, subject: e.target.value })}
-                    className="w-full px-4 py-2.5 rounded-xl bg-white dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 focus:border-cyan-500/80 focus:ring-2 focus:ring-cyan-500/20 text-slate-900 dark:text-white text-sm placeholder:text-slate-400 dark:placeholder:text-slate-600 outline-none transition-all shadow-sm dark:shadow-none"
+                    className="w-full px-4 py-3 rounded-xl bg-[#faf8f5] dark:bg-[#0c1017] border border-[#e8e3d9] dark:border-[#232d3f] text-sm text-[#131312] dark:text-white focus:outline-none focus:border-[#fe5922] dark:focus:border-[#38bdf8] transition-colors"
                   />
                 </div>
 
-                <div>
-                  <label className="block text-xs font-mono text-slate-700 dark:text-slate-300 mb-1.5 uppercase font-semibold">
-                    Message
+                {/* Message */}
+                <div className="space-y-1.5">
+                  <label className="text-xs font-mono font-medium text-[#131312] dark:text-white">
+                    Message Details *
                   </label>
                   <textarea
-                    rows="4"
+                    rows={4}
                     required
-                    placeholder="Hi Nithyananthan, we reviewed your projects and would like to discuss..."
+                    placeholder="Tell me about the role, technical requirements, or team setup..."
                     value={formState.message}
                     onChange={(e) => setFormState({ ...formState, message: e.target.value })}
-                    className="w-full px-4 py-2.5 rounded-xl bg-white dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 focus:border-cyan-500/80 focus:ring-2 focus:ring-cyan-500/20 text-slate-900 dark:text-white text-sm placeholder:text-slate-400 dark:placeholder:text-slate-600 outline-none transition-all resize-none shadow-sm dark:shadow-none"
+                    className="w-full px-4 py-3 rounded-xl bg-[#faf8f5] dark:bg-[#0c1017] border border-[#e8e3d9] dark:border-[#232d3f] text-sm text-[#131312] dark:text-white focus:outline-none focus:border-[#fe5922] dark:focus:border-[#38bdf8] transition-colors resize-none"
                   ></textarea>
                 </div>
 
+                {/* Submit button */}
                 <button
                   type="submit"
-                  className="w-full py-3 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold text-sm transition-all shadow-lg shadow-cyan-500/25 flex items-center justify-center gap-2 cursor-pointer hover:-translate-y-0.5"
+                  className="sc-btn-primary w-full cursor-pointer py-3.5"
                 >
                   <Send className="w-4 h-4" />
-                  <span>Send Message via Email</span>
+                  <span>Send Message via Email Client</span>
                 </button>
+
+                {formSubmitted && (
+                  <div className="p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-xs text-emerald-700 dark:text-emerald-400 font-medium text-center">
+                    Email client launched! You can also email directly at <strong>{personalInfo.email}</strong>.
+                  </div>
+                )}
               </form>
+
             </div>
           </div>
 
@@ -266,4 +288,3 @@ export default function Contact() {
     </section>
   );
 }
-

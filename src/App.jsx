@@ -9,6 +9,7 @@ import Experience from "./sections/Experience";
 import Projects from "./sections/Projects";
 import Education from "./sections/Education";
 import Certifications from "./sections/Certifications";
+import FAQ from "./sections/FAQ";
 import Contact from "./sections/Contact";
 import Footer from "./components/Footer";
 
@@ -16,7 +17,7 @@ export default function App() {
   const [isDark, setIsDark] = useState(() => {
     const saved = localStorage.getItem("nithya_portfolio_theme");
     if (saved) return saved === "dark";
-    return false; // Default Light Theme as requested
+    return false; // Default Warm Light Linen Theme as inspired by SkillClass
   });
 
   useEffect(() => {
@@ -35,12 +36,12 @@ export default function App() {
 
   return (
     <div className={`min-h-screen relative transition-colors duration-300 ${
-      isDark ? "bg-[#090d16] text-slate-100" : "bg-[#f8fafc] text-slate-900"
+      isDark ? "bg-[#0c1017] text-[#f3f4f6]" : "bg-[#faf8f5] text-[#131312]"
     }`}>
-      {/* Background Interactive Particle Grid */}
+      {/* Background Interactive Ambient Grid */}
       <ParticleBackground isDark={isDark} />
 
-      {/* Sticky Blurred Navbar */}
+      {/* Sticky Floating Navbar */}
       <Navbar isDark={isDark} onToggleTheme={toggleTheme} />
 
       {/* Main Content Sections */}
@@ -53,6 +54,7 @@ export default function App() {
         <Projects />
         <Education />
         <Certifications />
+        <FAQ />
         <Contact />
       </main>
 
@@ -61,4 +63,3 @@ export default function App() {
     </div>
   );
 }
-

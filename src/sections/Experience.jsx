@@ -1,5 +1,5 @@
 import React from "react";
-import { Briefcase, Calendar, MapPin, CheckCircle2, Building, Terminal, ArrowUpRight } from "lucide-react";
+import { Briefcase, Calendar, MapPin, CheckCircle2, Building, Terminal, ArrowRight } from "lucide-react";
 import { experience } from "../data/portfolioData";
 
 export default function Experience() {
@@ -7,96 +7,105 @@ export default function Experience() {
     <section id="experience" className="py-20 md:py-28 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Header */}
+        {/* Header — SkillClass Editorial Tag & Heading */}
         <div className="flex flex-col items-center text-center mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/25 text-cyan-600 dark:text-cyan-400 text-xs font-mono uppercase tracking-widest mb-3">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white dark:bg-[#141a26] border border-[#e8e3d9] dark:border-[#232d3f] text-[#fe5922] dark:text-[#38bdf8] text-xs font-mono uppercase tracking-widest mb-4 shadow-sm">
             <Briefcase className="w-3.5 h-3.5" />
-            <span>04 · Professional Experience</span>
+            <span>Professional Experience</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight">
-            Work & <span className="gradient-text">Internship</span>
+
+          <h2 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-[#131312] dark:text-white tracking-tight max-w-3xl leading-[1.12]">
+            Industry exposure.{" "}
+            <span className="font-editorial-italic font-normal text-[#fe5922] dark:text-[#38bdf8]">
+              Hands-on development.
+            </span>
           </h2>
-          <p className="text-slate-600 dark:text-slate-400 max-w-xl text-sm sm:text-base mt-2">
-            Hands-on industry exposure in full stack web development and software engineering processes.
+          
+          <p className="text-[#5e5d59] dark:text-[#94a3b8] max-w-xl text-sm sm:text-base mt-3">
+            Practical full-stack web application development and collaborative team engineering.
           </p>
         </div>
 
-        {/* Experience Timeline */}
+        {/* Experience Timeline Card */}
         <div className="max-w-4xl mx-auto">
           {experience.map((exp, index) => (
             <div
               key={index}
-              className="relative pl-6 sm:pl-8 border-l-2 border-cyan-500/40 pb-6 group"
+              className="sc-card p-7 sm:p-10 space-y-7 relative overflow-hidden"
             >
-              {/* Timeline Node Icon */}
-              <div className="absolute -left-[17px] top-0 w-8 h-8 rounded-full bg-white dark:bg-slate-900 border-2 border-cyan-500 flex items-center justify-center text-cyan-600 dark:text-cyan-400 shadow-md shadow-cyan-500/30 group-hover:scale-110 transition-transform">
-                <Briefcase className="w-4 h-4" />
-              </div>
+              {/* Top Accent Strip */}
+              <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-[#fe5922] via-[#0284c7] to-[#8b5cf6]" />
 
-              {/* Experience Card */}
-              <div className="glass-panel p-6 sm:p-8 rounded-3xl space-y-6 group-hover:border-cyan-500/40 transition-all">
-                {/* Header Information */}
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-slate-200 dark:border-slate-800/80">
-                  <div>
-                    <span className="inline-block px-2.5 py-0.5 rounded-full text-xs font-semibold bg-cyan-500/10 dark:bg-cyan-500/15 text-cyan-700 dark:text-cyan-300 border border-cyan-500/25 mb-2 font-mono">
+              {/* Header Details */}
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-[#e8e3d9] dark:border-[#232d3f]">
+                <div>
+                  <div className="flex items-center gap-2 mb-2 flex-wrap">
+                    <span className="px-3 py-0.5 rounded-full text-xs font-mono font-semibold bg-[#fe5922]/10 text-[#fe5922] dark:bg-[#38bdf8]/10 dark:text-[#38bdf8] border border-[#fe5922]/20 dark:border-[#38bdf8]/20">
                       {exp.type}
                     </span>
-                    <h3 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white">
-                      {exp.role}
-                    </h3>
-                    <div className="flex items-center gap-3 text-slate-600 dark:text-slate-300 text-sm mt-1 flex-wrap">
-                      <span className="flex items-center gap-1 text-cyan-600 dark:text-cyan-400 font-medium">
-                        <Building className="w-4 h-4" />
-                        {exp.company}
-                      </span>
-                      <span className="text-slate-400 dark:text-slate-600">·</span>
-                      <span className="flex items-center gap-1 text-slate-500 dark:text-slate-400">
-                        <MapPin className="w-4 h-4" />
-                        {exp.location}
-                      </span>
-                    </div>
+                    <span className="text-xs font-mono text-[#676561] dark:text-[#94a3b8]">
+                      {exp.duration}
+                    </span>
                   </div>
 
-                  <div className="text-xs font-mono text-slate-600 dark:text-slate-400 px-3 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-800/70 border border-slate-200 dark:border-slate-700/60 self-start sm:self-center">
-                    {exp.period}
-                  </div>
-                </div>
+                  <h3 className="text-2xl sm:text-3xl font-bold text-[#131312] dark:text-white">
+                    {exp.role}
+                  </h3>
 
-                {/* Description */}
-                <p className="text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed">
-                  {exp.description}
-                </p>
-
-                {/* Key Highlights */}
-                <div>
-                  <h4 className="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 font-mono mb-3">
-                    Key Deliverables & Learnings
-                  </h4>
-                  <ul className="space-y-2.5">
-                    {exp.highlights.map((h, i) => (
-                      <li key={i} className="flex items-start gap-3 text-xs sm:text-sm text-slate-700 dark:text-slate-300">
-                        <CheckCircle2 className="w-4 h-4 text-cyan-600 dark:text-cyan-400 mt-0.5 shrink-0" />
-                        <span>{h}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                {/* Technologies used */}
-                <div className="pt-2">
-                  <div className="flex flex-wrap gap-2">
-                    {exp.technologies.map((t, idx) => (
-                      <span
-                        key={idx}
-                        className="px-3 py-1 rounded-lg text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700/70"
-                      >
-                        {t}
-                      </span>
-                    ))}
+                  <div className="flex items-center gap-3 text-sm text-[#5e5d59] dark:text-[#94a3b8] mt-1.5 flex-wrap">
+                    <span className="flex items-center gap-1.5 text-[#131312] dark:text-white font-semibold">
+                      <Building className="w-4 h-4 text-[#fe5922] dark:text-[#38bdf8]" />
+                      {exp.company}
+                    </span>
+                    <span className="text-[#e8e3d9] dark:text-[#232d3f]">•</span>
+                    <span className="flex items-center gap-1.5 font-mono text-xs">
+                      <MapPin className="w-3.5 h-3.5 text-[#676561] dark:text-[#94a3b8]" />
+                      {exp.location}
+                    </span>
                   </div>
                 </div>
 
+                {/* Period Badge */}
+                <div className="self-start sm:self-center px-4 py-2 rounded-2xl bg-white dark:bg-[#1a2233] border border-[#e8e3d9] dark:border-[#232d3f] text-xs font-mono font-bold text-[#131312] dark:text-white shadow-sm">
+                  <div className="text-[10px] uppercase tracking-wider text-[#676561] dark:text-[#94a3b8] font-normal">Internship Window</div>
+                  <div>{exp.period}</div>
+                </div>
               </div>
+
+              {/* Description */}
+              <p className="text-sm sm:text-base text-[#5e5d59] dark:text-[#94a3b8] leading-relaxed">
+                {exp.description}
+              </p>
+
+              {/* Verified Highlights */}
+              <div className="space-y-3">
+                <h4 className="text-xs font-mono uppercase tracking-wider text-[#676561] dark:text-[#94a3b8] font-bold">
+                  Key Deliverables & Responsibilities
+                </h4>
+                <div className="space-y-2.5">
+                  {exp.highlights.map((h, i) => (
+                    <div key={i} className="flex items-start gap-3 text-xs sm:text-sm text-[#131312] dark:text-[#f3f4f6]">
+                      <CheckCircle2 className="w-4 h-4 text-[#fe5922] dark:text-[#38bdf8] shrink-0 mt-0.5" />
+                      <span>{h}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Technologies Used */}
+              <div className="pt-2">
+                <div className="flex flex-wrap gap-2">
+                  {exp.technologies.map((t, idx) => (
+                    <span
+                      key={idx}
+                      className="px-3 py-1 rounded-lg text-xs font-mono bg-[#faf8f5] dark:bg-[#1a2233] text-[#131312] dark:text-[#f3f4f6] border border-[#e8e3d9] dark:border-[#232d3f]"
+                    >
+                      {t}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
             </div>
           ))}
         </div>
@@ -105,4 +114,3 @@ export default function Experience() {
     </section>
   );
 }
-

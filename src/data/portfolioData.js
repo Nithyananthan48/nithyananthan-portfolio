@@ -1,61 +1,104 @@
 export const personalInfo = {
-  name: "NITHYANANTHAN",
-  title: "FULL STACK DEVELOPER",
-  tagline: "Building modern, responsive and user-focused web experiences.",
-  intro: "I’m an MCA student and aspiring Full Stack Developer with hands-on experience in frontend and backend development. I enjoy building responsive web applications, solving development problems, and turning ideas into practical digital experiences.",
-  about: "I am currently pursuing my Master of Computer Applications and developing my skills as a Full Stack Developer. I have a strong foundation in HTML, CSS, JavaScript and React.js, along with practical exposure to backend technologies and database integration. Through internships and projects, I have gained experience in developing responsive interfaces, integrating APIs, working with databases, implementing authentication and building complete web application features. I enjoy learning new technologies, solving problems and continuously improving my development skills.",
-  location: "8/2, Hopes, Coimbatore, Tamil Nadu, India",
-  email: "ananth2548@gmail.com",
+  name: "NITHYANANTHAN N",
+  shortName: "Nithyananthan",
+  title: "Full Stack Developer",
+  targetRole: "Full Stack Developer / Frontend Developer",
+  tagline: "Building practical, responsive, and user-friendly web applications.",
+  intro: "MCA fresher (CGPA 8.1) seeking a Full Stack Developer role. Skilled in Java, Python, and JavaScript, with hands-on experience in frontend development with React.js, backend APIs with Node.js and Express.js, MongoDB and MySQL databases, and JWT authentication.",
+  about: "I am an MCA fresher at Hindusthan College of Arts and Science, Coimbatore, seeking a Full Stack Developer or Frontend Developer role. I build modern web applications using React.js, JavaScript, Node.js, Express.js, and Python, paired with MongoDB and MySQL databases. Through my academic coursework, practical projects, and a Python Full Stack Development internship at Nitroware Technologies, I have built hands-on experience in developing responsive interfaces, creating REST APIs, implementing JWT authentication, and performing database operations. I focus on writing clean code, solving real-world development problems, and continuously learning new technologies.",
+  location: "Coimbatore, Tamil Nadu, India",
+  email: "ananthan979594@gmail.com",
   phone: "+91 9597942548",
   whatsappUrl: "https://wa.me/919597942548",
   githubUrl: "https://github.com/Nithyananthan48",
   linkedinUrl: "https://linkedin.com/in/nithyananthan959794",
+  portfolioUrl: "https://nithyananthan-portfolio.vercel.app/",
   resumePath: "/assets/Nithyananthan_Full_Stack_Developer_Resume.pdf",
   profileImage: "/assets/profile.jpg",
   avatarImage: "/assets/IMG_20240819_200730_886.jpg",
 };
 
 export const stats = [
-  { label: "MCA Degree", value: "8.1", sub: "CGPA Hindusthan CAS", highlight: true },
-  { label: "BBA Degree", value: "7.3", sub: "CGPA Govt Arts College" },
-  { label: "Python Full Stack", value: "Intern", sub: "Nitroware Technologies" },
-  { label: "Major Projects", value: "03", sub: "Full Stack & AI NLP" },
+  { label: "Master's Degree", value: "MCA", sub: "8.1 CGPA · Hindusthan CAS", highlight: true },
+  { label: "Bachelor's Degree", value: "BBA", sub: "7.3 CGPA · Govt Arts College" },
+  { label: "Industry Internship", value: "1 Month", sub: "Nitroware Technologies (Python Full Stack)" },
+  { label: "Key Projects", value: "03", sub: "MERN, MySQL & AI NLP" },
+];
+
+export const developmentProcess = [
+  {
+    step: "01",
+    title: "Architecture & Planning",
+    tagline: "Structure before syntax",
+    desc: "Define modular project directory layout, API contracts, JSON payloads, and relational/document database schemas before writing code.",
+    icon: "Layers"
+  },
+  {
+    step: "02",
+    title: "Responsive Frontend Craft",
+    tagline: "Pixel-perfect & accessible",
+    desc: "Build dynamic, reusable component hierarchies with React.js, styled with modern Tailwind CSS and validated across mobile, tablet, and desktop viewports.",
+    icon: "Layout"
+  },
+  {
+    step: "03",
+    title: "Backend API Engineering",
+    tagline: "Structured REST endpoints",
+    desc: "Implement scalable Node.js & Express or Python server logic, clear routing, request validation, and comprehensive HTTP status error handling.",
+    icon: "Server"
+  },
+  {
+    step: "04",
+    title: "Database Integration",
+    tagline: "Reliable data persistence",
+    desc: "Model dynamic document collections in MongoDB and structured relational schemas in MySQL with all four CRUD operations optimized for integrity.",
+    icon: "Database"
+  },
+  {
+    step: "05",
+    title: "Authentication & Security",
+    tagline: "Protected sessions & tokens",
+    desc: "Integrate stateless JSON Web Token (JWT) authentication, password encryption, authorization middleware, and protected frontend routing.",
+    icon: "ShieldCheck"
+  },
+  {
+    step: "06",
+    title: "Testing, Debugging & Deploy",
+    tagline: "Production-ready delivery",
+    desc: "Methodically inspect browser DevTools, test endpoint payloads via Postman, eliminate bugs, and optimize builds for zero-friction Vercel deployment.",
+    icon: "Cpu"
+  }
 ];
 
 export const capabilities = [
   {
     title: "Responsive Web Development",
-    desc: "Crafting fluid, mobile-first layouts that render consistently across smartphones, tablets, laptops, and ultra-wide displays.",
+    desc: "Crafting fluid, mobile-first layouts that render consistently across smartphones, tablets, laptops, and wide monitors.",
     icon: "Layout",
   },
   {
     title: "Frontend Development",
-    desc: "Building dynamic single-page applications with modern React.js, clean component architectures, and responsive state management.",
+    desc: "Building dynamic single-page applications with React.js, reusable components, and responsive state handling.",
     icon: "Code2",
   },
   {
     title: "Full Stack Web Development",
-    desc: "Bridging client interfaces with scalable server architectures, secure authentication, and end-to-end data workflows.",
+    desc: "Connecting responsive client frontends with backend Node.js/Express and Python services, secure authentication, and databases.",
     icon: "Layers",
   },
   {
     title: "REST API Integration",
-    desc: "Designing and consuming clean RESTful endpoints using Node.js & Express with structured JSON payloads and error handling.",
+    desc: "Developing and consuming RESTful endpoints using Node.js & Express with structured JSON requests and clean error handling.",
     icon: "Network",
   },
   {
     title: "Database Integration",
-    desc: "Architecting document schemas in MongoDB and relational models in MySQL for consistent, performant data queries.",
+    desc: "Creating flexible collections in MongoDB and relational schemas in MySQL for structured, reliable data management.",
     icon: "Database",
   },
   {
-    title: "UI Development",
-    desc: "Translating mockups into interactive user interfaces using modern CSS, subtle glassmorphism, and micro-animations.",
-    icon: "Palette",
-  },
-  {
-    title: "Debugging & Testing",
-    desc: "Methodically tracing application state, inspecting network calls, and resolving edge-case bugs for stable production code.",
+    title: "Debugging & Problem Solving",
+    desc: "Methodically tracing application state, inspecting network calls, and resolving bugs for stable web applications.",
     icon: "BugPlay",
   }
 ];
@@ -63,32 +106,32 @@ export const capabilities = [
 export const whyWorkWithMe = [
   {
     title: "Strong Learning Mindset",
-    desc: "Rapidly grasps new frameworks, libraries, and architectural paradigms with curiosity and discipline.",
+    desc: "Fast learner eager to pick up new tools, frameworks, and engineering standards with discipline.",
     icon: "Sparkles"
   },
   {
-    title: "Practical Project Experience",
-    desc: "Has planned and completed full-stack platforms with real databases, authentication, and APIs.",
+    title: "Hands-on Project Experience",
+    desc: "Built full-stack platforms including MERN blogging, MySQL movie rating, and an MCA NLP research tool.",
     icon: "FolderGit2"
   },
   {
-    title: "Problem-Solving Approach",
-    desc: "Breaks complex requirements down into logical, modular, and maintainable solutions.",
+    title: "Practical Problem Solving",
+    desc: "Breaks complex requirements into clean, modular, and maintainable code solutions.",
     icon: "Cpu"
   },
   {
-    title: "Responsive UI Development",
-    desc: "Obsesses over usability, typography, smooth transitions, and multi-device ergonomics.",
+    title: "Responsive UI Focus",
+    desc: "Ensures smooth user experience, readable typography, and seamless multi-device responsiveness.",
     icon: "MonitorSmartphone"
   },
   {
-    title: "Full-Stack Understanding",
-    desc: "Understands both browser client runtime and server-side request/response lifecycles.",
+    title: "Full Stack Understanding",
+    desc: "Understands both client-side UI rendering and backend server-to-database communication flows.",
     icon: "Workflow"
   },
   {
-    title: "Team Collaboration",
-    desc: "Experienced in Git version control, collaborative code reviews, and communicative development.",
+    title: "Team Collaboration & Git",
+    desc: "Familiar with Git version control, collaborative workflows, and clear technical communication.",
     icon: "Users"
   }
 ];
@@ -96,53 +139,66 @@ export const whyWorkWithMe = [
 export const skillCategories = [
   {
     id: "frontend",
-    name: "Frontend",
-    description: "Modern UI engineering, responsive layout systems, and interactive client experiences",
+    name: "Frontend Development",
+    description: "Modern UI development, responsive layouts, and interactive client components",
     skills: [
-      { name: "React.js", level: "Practical", tag: "Components & State", icon: "React" },
-      { name: "JavaScript (ES6+)", level: "Core", tag: "DOM & Async Flows", icon: "Js" },
-      { name: "HTML5", level: "Core", tag: "Semantic & Accessible", icon: "Html" },
-      { name: "CSS3", level: "Core", tag: "Flexbox, Grid & UI", icon: "Css" },
-      { name: "Responsive Web Design", level: "Practical", tag: "Mobile-First & Fluid", icon: "Responsive" },
-      { name: "User Interface Design", level: "Practical", tag: "Hierarchy & Usability", icon: "Design" },
+      { name: "React.js", tag: "Components & State", icon: "React" },
+      { name: "JavaScript", tag: "ES6+, DOM & Async", icon: "Js" },
+      { name: "HTML", tag: "Semantic & Modern", icon: "Html" },
+      { name: "CSS", tag: "Flexbox, Grid & Styling", icon: "Css" },
+      { name: "Bootstrap", tag: "Responsive UI Framework", icon: "Bootstrap" },
+      { name: "Responsive Web Design", tag: "Mobile-First & Fluid Layouts", icon: "Responsive" },
     ]
   },
   {
     id: "backend",
-    name: "Backend / Full Stack",
-    description: "Server-side logic, API endpoints, authentication flows, and Python full stack",
+    name: "Backend Development",
+    description: "Server runtime, RESTful routing, backend scripting, and programming languages",
     skills: [
-      { name: "Node.js", level: "Practical", tag: "Runtime & Async IO", icon: "Node" },
-      { name: "Express.js", level: "Practical", tag: "Routing & Middleware", icon: "Express" },
-      { name: "REST APIs", level: "Practical", tag: "CRUD & JSON Services", icon: "Api" },
-      { name: "Python Full Stack", level: "Internship", tag: "Scripting & Architecture", icon: "Python" },
+      { name: "Node.js", tag: "Runtime & Async IO", icon: "Node" },
+      { name: "Express.js", tag: "Routing & Middleware", icon: "Express" },
+      { name: "Python", tag: "Full Stack & NLP Scripting", icon: "Python" },
+      { name: "Java", tag: "Core Concepts & OOP", icon: "Java" },
+      { name: "SQL", tag: "Relational Queries & Tables", icon: "Mysql" },
     ]
   },
   {
     id: "database",
     name: "Databases",
-    description: "Structured relational models and flexible document-based data persistence",
+    description: "Document persistence with MongoDB and relational data storage with MySQL",
     skills: [
-      { name: "MongoDB", level: "Practical", tag: "Collections & Aggregations", icon: "Mongo" },
-      { name: "MySQL", level: "Practical", tag: "Relational Queries & Tables", icon: "Mysql" },
+      { name: "MongoDB", tag: "NoSQL Collections & CRUD", icon: "Mongo" },
+      { name: "MySQL", tag: "Relational Queries & Schemas", icon: "Mysql" },
+    ]
+  },
+  {
+    id: "apis",
+    name: "APIs & Authentication",
+    description: "Structured data endpoints and token-based user authentication",
+    skills: [
+      { name: "REST APIs", tag: "JSON Endpoints & CRUD", icon: "Api" },
+      { name: "JWT Authentication", tag: "Token-Based Security & Login", icon: "Jwt" },
     ]
   },
   {
     id: "tools",
-    name: "Tools",
-    description: "Development tooling, version control, and collaborative workflows",
+    name: "Developer Tools",
+    description: "Version control and collaborative software development",
     skills: [
-      { name: "Git", level: "Practical", tag: "Branches & Versioning", icon: "Git" },
-      { name: "GitHub", level: "Practical", tag: "Repo & Collaboration", icon: "Github" },
+      { name: "Git", tag: "Version Control & Branching", icon: "Git" },
+      { name: "GitHub", tag: "Repositories & Collaboration", icon: "Github" },
     ]
   },
   {
-    id: "other",
-    name: "Other",
-    description: "Core engineering problem-solving and software quality assurance",
+    id: "core",
+    name: "Core Concepts",
+    description: "Development lifecycle, application testing, and core analytical thinking",
     skills: [
-      { name: "Problem Solving", level: "Core Strength", tag: "Algorithmic & Practical", icon: "Logic" },
-      { name: "Debugging & Testing", level: "Core Strength", tag: "DevTools & Validation", icon: "Bug" },
+      { name: "Object-Oriented Programming (OOP)", tag: "Classes & Architecture", icon: "Layers" },
+      { name: "CRUD Operations", tag: "Create, Read, Update, Delete", icon: "Database" },
+      { name: "Debugging", tag: "DevTools & Error Tracing", icon: "Bug" },
+      { name: "Testing", tag: "Validation & Quality", icon: "Check" },
+      { name: "Problem Solving", tag: "Analytical & Logic", icon: "Logic" },
     ]
   }
 ];
@@ -152,15 +208,15 @@ export const experience = [
     role: "Python Full Stack Development Intern",
     company: "Nitroware Technologies",
     location: "Coimbatore, Tamil Nadu",
-    period: "Internship Experience",
+    period: "9 May 2026 – 9 June 2026",
+    duration: "1 Month Internship",
     type: "Internship",
-    description: "Completed an internship in Python Full Stack Development. Worked with both frontend and backend development, developed and improved web application features, gained practical experience in designing, developing and testing applications, and improved problem-solving skills and learned how to work as part of a development team.",
+    description: "Completed an internship in Python Full Stack Development at Nitroware Technologies, gaining practical industry experience in web application development, testing, and collaborative teamwork.",
     highlights: [
-      "Completed an internship in Python Full Stack Development.",
-      "Worked with both frontend and backend development.",
-      "Developed and improved web application features.",
-      "Gained practical experience in designing, developing and testing applications.",
-      "Improved problem-solving skills and learned how to work as part of a development team."
+      "Contributed to frontend and backend development of web applications during a one-month internship.",
+      "Implemented new features and improved existing features in web applications.",
+      "Took part in the design, development and testing of project work.",
+      "Collaborated with a team and applied debugging and problem-solving skills to resolve issues."
     ],
     technologies: ["Python", "Full Stack Development", "Frontend", "Backend", "Web Testing", "Team Collaboration"]
   }
@@ -169,51 +225,47 @@ export const experience = [
 export const projects = [
   {
     id: "ai-research-gap",
+    number: "01",
     title: "AI-Based Research Gap Detection System",
     badge: "MCA Final Year Project",
-    isFeatured: true,
+    statusText: "In Progress",
     category: "AI & Full Stack System",
-    shortDescription: "An AI-based research assistance system designed to analyze research papers and identify possible research gaps.",
-    longDescription: "An AI-based research assistance system designed to analyze research papers and identify possible research gaps. Developed as my MCA final-year capstone project to assist researchers and scholars in navigating extensive literature, extracting core findings, and discovering unexplored dimensions across research methodologies, datasets, and practical applications.",
+    shortDescription: "An AI-based system that analyzes academic research papers to discover unexplored research opportunities across methodology, dataset, and application gaps.",
+    longDescription: "Developing a system that analyzes research papers to identify possible methodology, dataset and application gaps. Completed PDF upload and text extraction so papers can be processed for analysis. In progress: NLP-based analysis to identify keywords, concepts and research areas from extracted text, and a responsive React.js interface for uploading papers and viewing analysis results.",
     technologies: ["Python", "NLP", "React.js", "MongoDB"],
+    accentColor: "indigo",
     features: [
-      "PDF upload",
-      "Research paper text extraction",
-      "NLP-based analysis",
-      "Keyword and concept identification",
-      "Research area analysis",
-      "Methodology gap detection",
-      "Dataset gap detection",
-      "Application gap detection",
-      "Analysis result interface"
+      "PDF upload and text extraction so papers can be processed for analysis (Completed)",
+      "NLP-based analysis to identify keywords, concepts and research areas from extracted text (In Progress)",
+      "React.js interface for uploading papers and viewing analysis results (In Progress)",
+      "Detection of methodology gaps, dataset constraints, and application opportunities",
+      "MongoDB database integration for persisting extracted text and gap summaries"
     ],
     githubUrl: "https://github.com/Nithyananthan48",
     liveDemoUrl: null,
     previewType: "ai-research",
     stats: [
-      { label: "Focus", value: "NLP Analysis" },
-      { label: "Status", value: "MCA Project" },
+      { label: "Domain", value: "NLP & AI Analysis" },
+      { label: "Stage", value: "MCA Final Year" },
       { label: "Database", value: "MongoDB" }
     ]
   },
   {
     id: "blogging-platform",
+    number: "02",
     title: "Blogging Platform — MERN Stack",
-    badge: "MERN Stack",
-    isFeatured: false,
+    badge: "MERN Stack Application",
+    statusText: "Completed",
     category: "Full Stack Web Application",
-    shortDescription: "Developed a full-stack blogging platform using the MERN stack with features for creating, editing and managing blog posts.",
-    longDescription: "A full-stack blogging platform built with the MERN stack (MongoDB, Express.js, React.js, Node.js). Engineered with secure user login, JWT authentication, responsive React frontend, REST API integration, CRUD operations, and MongoDB database integration.",
-    technologies: ["MongoDB", "Express.js", "React.js", "Node.js"],
+    shortDescription: "A full stack blogging platform where users can create, edit and manage blog posts with secure JWT authentication and REST APIs.",
+    longDescription: "Built a full stack blogging platform where users can create, edit and manage blog posts. Implemented JWT authentication for secure login and user management. Developed a responsive React.js frontend and connected it to the Express.js backend through REST APIs. Implemented all four CRUD operations (create, read, update, delete) with MongoDB to store and manage blog data.",
+    technologies: ["MongoDB", "Express.js", "React.js", "Node.js", "JWT", "REST APIs"],
+    accentColor: "emerald",
     features: [
-      "Create blog posts",
-      "Edit and manage posts",
-      "JWT authentication",
-      "Secure user login",
-      "Responsive React frontend",
-      "REST API integration",
-      "CRUD operations",
-      "MongoDB database integration"
+      "Built a full stack blogging platform where users can create, edit and manage blog posts",
+      "Implemented JWT authentication for secure login and user management",
+      "Developed a responsive React.js frontend and connected it to the Express.js backend through REST APIs",
+      "Implemented all four CRUD operations (create, read, update, delete) with MongoDB to store and manage blog data"
     ],
     githubUrl: "https://github.com/Nithyananthan48",
     liveDemoUrl: null,
@@ -221,25 +273,25 @@ export const projects = [
     stats: [
       { label: "Architecture", value: "MERN Stack" },
       { label: "Auth", value: "JWT Tokens" },
-      { label: "Storage", value: "MongoDB" }
+      { label: "Operations", value: "Full CRUD" }
     ]
   },
   {
     id: "movie-rating",
+    number: "03",
     title: "Movie Rating Website — Full Stack",
     badge: "Full Stack & MySQL",
-    isFeatured: false,
+    statusText: "Completed",
     category: "Full Stack Web Application",
-    shortDescription: "Developed a responsive movie rating platform where users can explore movies and submit ratings and reviews.",
-    longDescription: "A responsive movie rating platform where users can explore movies and submit ratings and reviews. Developed with a Node.js and Express.js backend, REST API integration, MySQL relational database, and an intuitive responsive UI.",
-    technologies: ["HTML", "CSS", "JavaScript", "Node.js", "Express.js", "MySQL"],
+    shortDescription: "A full stack movie rating website with a JavaScript frontend, Node.js/Express.js backend, and MySQL database for user ratings and reviews.",
+    longDescription: "Built a movie rating website with a JavaScript frontend and a Node.js and Express.js backend. Added features for users to submit movie ratings and reviews. Connected REST APIs to a MySQL database to store and retrieve movie and review data. Designed a responsive, easy-to-use interface.",
+    technologies: ["HTML", "CSS", "JavaScript", "Node.js", "Express.js", "MySQL", "REST APIs"],
+    accentColor: "amber",
     features: [
-      "Movie rating",
-      "User reviews",
-      "REST API integration",
-      "MySQL database",
-      "Backend using Node.js and Express.js",
-      "Responsive UI"
+      "Built a movie rating website with a JavaScript frontend and a Node.js and Express.js backend",
+      "Added features for users to submit movie ratings and reviews",
+      "Connected REST APIs to a MySQL database to store and retrieve movie and review data",
+      "Designed a responsive, easy-to-use interface"
     ],
     githubUrl: "https://github.com/Nithyananthan48",
     liveDemoUrl: null,
@@ -247,7 +299,7 @@ export const projects = [
     stats: [
       { label: "Backend", value: "Node & Express" },
       { label: "Database", value: "MySQL" },
-      { label: "Frontend", value: "HTML/CSS/JS" }
+      { label: "Frontend", value: "HTML / CSS / JS" }
     ]
   }
 ];
@@ -260,7 +312,7 @@ export const education = [
     period: "2024 — 2026",
     cgpa: "8.1",
     statusBadge: "Final Year Student",
-    description: "Deepened core computer science foundations, full stack development architectures, database systems, and practical AI research applications."
+    description: "Pursuing MCA with strong focus on full-stack web engineering, modern JavaScript frameworks, relational & NoSQL databases, and an AI-based NLP research capstone project."
   },
   {
     degree: "Bachelor of Business Administration (BBA)",
@@ -268,39 +320,100 @@ export const education = [
     location: "Tiruvannamalai, Tamil Nadu",
     period: "2021 — 2024",
     cgpa: "7.3",
-    statusBadge: "Graduated",
-    description: "Developed strong business acumen, problem-solving methodologies, strategic thinking, and clear organizational communication."
+    statusBadge: "Completed",
+    description: "Built strong foundations in analytical reasoning, project coordination, and structured problem-solving before entering advanced computer applications."
   }
 ];
 
 export const certifications = [
   {
-    title: "Java Programming for Beginners",
-    issuer: "IBM Skills Network via Coursera",
+    title: "Full Stack Developer",
+    issuer: "One Roadmap Skill Certification",
+    year: "2026",
+    provider: "One Roadmap",
+    skills: ["Full Stack Architecture", "MERN Stack", "Web Development"]
+  },
+  {
+    title: "React.js Developer",
+    issuer: "One Roadmap Skill Certification",
+    year: "2026",
+    provider: "One Roadmap",
+    skills: ["React.js", "Component Architecture", "State Management"]
+  },
+  {
+    title: "Programming with JavaScript",
+    issuer: "Meta (Coursera)",
     year: "2025",
-    provider: "IBM / Coursera",
-    skills: ["Object-Oriented Programming", "Java Core", "Algorithms"]
+    provider: "Meta",
+    skills: ["JavaScript (ES6+)", "Functions & Objects", "Testing"]
   },
   {
     title: "Introduction to Front-End Development",
-    issuer: "Meta via Coursera",
+    issuer: "Meta (Coursera)",
     year: "2025",
-    provider: "Meta / Coursera",
-    skills: ["HTML5", "CSS3", "JavaScript", "Responsive UI"]
+    provider: "Meta",
+    skills: ["HTML5", "CSS3", "Responsive UI", "Web Standards"]
+  },
+  {
+    title: "MongoDB Basics for Students",
+    issuer: "MongoDB",
+    year: "2026",
+    provider: "MongoDB",
+    skills: ["NoSQL Databases", "CRUD Queries", "Document Modeling"]
+  },
+  {
+    title: "Python for Data Science, AI and Development",
+    issuer: "IBM (Coursera)",
+    year: "2025",
+    provider: "IBM",
+    skills: ["Python Programming", "Data Structures", "APIs & Libraries"]
+  },
+  {
+    title: "Java Programming for Beginners",
+    issuer: "IBM Skills Network (Coursera)",
+    year: "2025",
+    provider: "IBM Skills Network",
+    skills: ["Core Java", "OOP Principles", "Algorithms & Logic"]
   },
   {
     title: "PHP and MySQL Training",
-    issuer: "IIT Bombay via EduPyramids",
+    issuer: "IIT Bombay (EduPyramids)",
     year: "2026",
     provider: "IIT Bombay",
     skills: ["PHP Scripting", "MySQL Queries", "Relational Databases"]
   },
   {
-    title: "Full Stack Development Course",
-    issuer: "Greens Technologies",
-    year: "2025",
-    provider: "Greens Tech",
-    skills: ["Full Stack Architecture", "REST APIs", "Modern Web Apps"]
+    title: "Introduction to Modern AI",
+    issuer: "Cisco Networking Academy",
+    year: "2026",
+    provider: "Cisco",
+    skills: ["AI Fundamentals", "Machine Learning Basics", "Modern Tech"]
   }
 ];
 
+export const faqs = [
+  {
+    question: "What roles are you actively looking for?",
+    answer: "I am actively looking for Junior Full Stack Developer, Front-End Developer, or React Developer roles where I can build responsive user interfaces, develop clean REST APIs, and contribute to scalable web applications."
+  },
+  {
+    question: "What is your primary technology stack?",
+    answer: "My core full-stack toolkit consists of React.js, JavaScript (ES6+), HTML5, and CSS3 on the frontend, with Node.js, Express.js, and Python on the backend, alongside MongoDB and MySQL databases and JWT authentication."
+  },
+  {
+    question: "What did you work on during your Nitroware Technologies internship?",
+    answer: "During my Python Full Stack Development internship (9 May 2026 – 9 June 2026) at Nitroware Technologies in Coimbatore, I contributed to both frontend and backend development of web applications, built and enhanced application features, and participated in project testing and collaborative debugging."
+  },
+  {
+    question: "Can you work with both relational (SQL) and NoSQL databases?",
+    answer: "Yes! I built a complete MERN stack blogging platform utilizing MongoDB for document storage, and a full-stack movie rating application utilizing MySQL for relational tables, queries, and constraints."
+  },
+  {
+    question: "What is your MCA final year project?",
+    answer: "My MCA final year project is an AI-Based Research Gap Detection System built with Python, NLP, React.js, and MongoDB. It extracts text from research papers in PDF format and applies NLP analysis to identify methodology, dataset, and application research gaps."
+  },
+  {
+    question: "Where are you located and are you open to relocation?",
+    answer: "I am based in Coimbatore, Tamil Nadu, India. I am open to on-site roles in Coimbatore, Chennai, Bangalore, and other tech hubs, as well as hybrid and remote full-stack developer opportunities."
+  }
+];

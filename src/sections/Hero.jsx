@@ -1,105 +1,157 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { 
   ArrowRight, 
   FileDown, 
-  Mail, 
-  Code2, 
-  Terminal, 
+  ExternalLink, 
   Sparkles,
+  Award,
+  GraduationCap,
+  Briefcase,
   Layers,
-  Database,
-  CheckCircle
+  CheckCircle2,
+  MapPin
 } from "lucide-react";
 import { GithubIcon, LinkedinIcon, WhatsappIcon } from "../components/Icons";
 import { personalInfo } from "../data/portfolioData";
 
 export default function Hero() {
+  const roles = [
+    "Full Stack Developer",
+    "Frontend Developer",
+    "React.js Developer"
+  ];
+  const [roleIndex, setRoleIndex] = useState(0);
+  const [displayText, setDisplayText] = useState("");
+  const [isDeleting, setIsDeleting] = useState(false);
+
+  useEffect(() => {
+    const currentRole = roles[roleIndex];
+    let timeout;
+
+    if (!isDeleting && displayText === currentRole) {
+      timeout = setTimeout(() => setIsDeleting(true), 2200);
+    } else if (isDeleting && displayText === "") {
+      setIsDeleting(false);
+      setRoleIndex((prev) => (prev + 1) % roles.length);
+    } else {
+      timeout = setTimeout(() => {
+        setDisplayText((prev) =>
+          isDeleting
+            ? currentRole.substring(0, prev.length - 1)
+            : currentRole.substring(0, prev.length + 1)
+        );
+      }, isDeleting ? 40 : 85);
+    }
+
+    return () => clearTimeout(timeout);
+  }, [displayText, isDeleting, roleIndex]);
+
   return (
     <section
       id="home"
-      className="relative min-h-screen pt-28 pb-16 md:pt-36 md:pb-24 flex items-center justify-center overflow-hidden"
+      className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden"
     >
-      {/* Ambient background glows */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[550px] h-[550px] bg-cyan-500/15 dark:bg-cyan-500/10 rounded-full blur-3xl pointer-events-none -z-10 animate-blob-slow" />
-      <div className="absolute top-1/3 right-10 w-[380px] h-[380px] bg-indigo-500/15 dark:bg-indigo-500/10 rounded-full blur-3xl pointer-events-none -z-10 animate-pulse-glow" />
+      {/* SkillClass Subtle Ambient Background Elements */}
+      <div className="absolute top-12 left-1/2 -translate-x-1/2 w-[680px] h-[380px] bg-gradient-to-r from-[#fe5922]/10 via-[#0284c7]/8 to-[#a855f7]/8 rounded-full blur-3xl pointer-events-none -z-10 animate-pulse-subtle" />
+      <div className="absolute top-1/3 right-4 w-96 h-96 bg-[#0284c7]/8 dark:bg-[#38bdf8]/10 rounded-full blur-3xl pointer-events-none -z-10" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
-          {/* Left Column: Copy & CTAs */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        {/* Top Eyebrow Tag — SkillClass Editorial Pill */}
+        <div className="flex flex-col items-center text-center mb-8">
+          <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/90 dark:bg-[#141a26]/90 border border-[#e8e3d9] dark:border-[#232d3f] shadow-sm backdrop-blur-sm">
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-500 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+            </span>
+            <span className="text-xs font-medium text-[#131312] dark:text-[#f3f4f6]">
+              Coimbatore, Tamil Nadu · Available for Full Stack & Frontend Roles
+            </span>
+          </div>
+        </div>
+
+        {/* Hero Grid: Editorial Headline & Copy on Left, Visual Showcase on Right */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-10 items-center">
+          
+          {/* Left Column: Bold Typography & Actions */}
           <div className="lg:col-span-7 flex flex-col items-center lg:items-start text-center lg:text-left space-y-6">
             
-            {/* Availability Badge */}
-            <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-white/90 dark:bg-slate-900/80 border border-slate-200 dark:border-slate-700/70 text-xs text-slate-700 dark:text-slate-300 backdrop-blur-md shadow-sm">
-              <span className="relative flex h-2.5 w-2.5">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-500 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
-              </span>
-              <span className="font-mono font-semibold">Available for Full Stack Opportunities</span>
-            </div>
+            {/* Identity & Main Headline */}
+            <div className="space-y-3">
+              <div className="text-xs font-mono uppercase tracking-widest text-[#a64025] dark:text-[#38bdf8] font-bold">
+                Portfolio of {personalInfo.name}
+              </div>
 
-            {/* Main Headlines */}
-            <div className="space-y-2">
-              <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-tight">
-                Hi, I'm <span className="gradient-text">{personalInfo.name}</span>
+              <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-[#131312] dark:text-white leading-[1.08]">
+                Building web apps with{" "}
+                <span className="font-editorial-italic font-normal text-[#fe5922] dark:text-[#38bdf8]">
+                  code, craft
+                </span>{" "}
+                & purpose.
               </h1>
-              <div className="flex items-center justify-center lg:justify-start gap-3 flex-wrap">
-                <span className="text-xl sm:text-2xl lg:text-3xl font-bold text-cyan-600 dark:text-cyan-400 font-mono tracking-wide">
-                  {personalInfo.title}
+
+              {/* Dynamic Role Subheading */}
+              <div className="flex items-center justify-center lg:justify-start gap-2 pt-2 flex-wrap">
+                <span className="text-lg sm:text-2xl font-bold text-[#131312] dark:text-[#f3f4f6]">
+                  Specializing as
                 </span>
-                <span className="hidden sm:inline text-slate-400 dark:text-slate-600 text-xl font-mono">/</span>
-                <span className="text-xs sm:text-sm px-2.5 py-0.5 rounded-md bg-cyan-100 text-cyan-900 dark:bg-cyan-950/60 border border-cyan-300 dark:border-cyan-800/60 dark:text-cyan-300 font-mono font-semibold">
-                  MCA Final Year
+                <span className="inline-flex items-center px-3 py-1 rounded-xl bg-white dark:bg-[#141a26] border border-[#e8e3d9] dark:border-[#232d3f] text-[#fe5922] dark:text-[#38bdf8] font-mono text-base sm:text-xl font-bold shadow-sm min-h-[38px]">
+                  {displayText}
+                  <span className="animate-pulse ml-0.5 font-normal">|</span>
                 </span>
               </div>
-              <p className="text-lg sm:text-xl font-semibold text-slate-700 dark:text-slate-200 italic pt-1">
-                "{personalInfo.tagline}"
-              </p>
             </div>
 
-            {/* Intro Paragraph */}
-            <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 max-w-2xl leading-relaxed">
-              {personalInfo.intro}
+            {/* Supporting Summary directly from resume */}
+            <p className="text-base sm:text-lg text-[#5e5d59] dark:text-[#94a3b8] max-w-2xl leading-relaxed">
+              MCA fresher (CGPA 8.1) seeking a Full Stack Developer role. Skilled in Java, Python, and JavaScript, with hands-on experience building React.js frontends, Node.js & Express.js REST APIs, MongoDB and MySQL databases, and JWT authentication.
             </p>
 
-            {/* CTA Buttons */}
+            {/* Action Buttons Cluster */}
             <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3.5 pt-2 w-full sm:w-auto">
+              {/* Primary Button */}
               <a
                 href="#projects"
-                className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold text-sm transition-all shadow-lg shadow-cyan-500/25 hover:shadow-cyan-500/40 hover:-translate-y-0.5 active:translate-y-0 w-full sm:w-auto"
+                className="sc-btn-primary w-full sm:w-auto shadow-md"
               >
-                <span>View My Work</span>
+                <span>Explore Projects</span>
                 <ArrowRight className="w-4 h-4" />
               </a>
 
+              {/* Download Resume Button */}
               <a
                 href={personalInfo.resumePath}
                 download="Nithyananthan_Full_Stack_Developer_Resume.pdf"
-                className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-white dark:bg-slate-900/80 hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-100 font-bold text-sm border border-slate-300 dark:border-slate-700/80 hover:border-cyan-500 transition-all hover:-translate-y-0.5 active:translate-y-0 w-full sm:w-auto shadow-sm"
+                className="sc-btn-secondary w-full sm:w-auto"
+                title="Download verified resume PDF"
               >
-                <FileDown className="w-4 h-4 text-cyan-600 dark:text-cyan-400" />
+                <FileDown className="w-4 h-4 text-[#fe5922] dark:text-[#38bdf8]" />
                 <span>Download Resume</span>
               </a>
 
+              {/* View Resume in new tab */}
               <a
-                href="#contact"
-                className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl text-slate-700 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white font-semibold text-sm transition-colors w-full sm:w-auto hover:bg-slate-200/60 dark:hover:bg-slate-800/40"
+                href={personalInfo.resumePath}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 px-4 py-3 rounded-full text-xs font-semibold text-[#5e5d59] hover:text-[#131312] dark:text-[#94a3b8] dark:hover:text-white transition-colors"
               >
-                <Mail className="w-4 h-4 text-slate-500 dark:text-slate-400" />
-                <span>Contact Me</span>
+                <ExternalLink className="w-3.5 h-3.5" />
+                <span>View PDF</span>
               </a>
             </div>
 
-            {/* Social Icons Bar */}
-            <div className="pt-3 flex items-center justify-center lg:justify-start gap-4 text-slate-500 dark:text-slate-400">
-              <span className="text-xs font-mono uppercase tracking-wider font-semibold text-slate-500 dark:text-slate-400">
+            {/* Social Links & Quick Connect */}
+            <div className="pt-2 flex items-center justify-center lg:justify-start gap-4 text-[#676561] dark:text-[#94a3b8] flex-wrap">
+              <span className="text-xs font-mono uppercase tracking-wider font-semibold">
                 Connect:
               </span>
-              <div className="flex items-center gap-2.5">
+              <div className="flex items-center gap-2">
                 <a
                   href={personalInfo.githubUrl}
                   target="_blank"
                   rel="noreferrer"
-                  className="p-2 rounded-lg bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-400 hover:border-cyan-500 hover:text-cyan-600 dark:hover:text-cyan-400 transition-all hover:-translate-y-0.5 shadow-sm"
+                  className="p-2.5 rounded-full bg-white dark:bg-[#141a26] border border-[#e8e3d9] dark:border-[#232d3f] text-[#131312] dark:text-white hover:border-[#fe5922] dark:hover:border-[#38bdf8] hover:text-[#fe5922] dark:hover:text-[#38bdf8] transition-all hover:-translate-y-0.5 shadow-sm"
                   aria-label="GitHub Profile"
                 >
                   <GithubIcon className="w-4 h-4" />
@@ -108,98 +160,105 @@ export default function Hero() {
                   href={personalInfo.linkedinUrl}
                   target="_blank"
                   rel="noreferrer"
-                  className="p-2 rounded-lg bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-400 hover:border-cyan-500 hover:text-cyan-600 dark:hover:text-cyan-400 transition-all hover:-translate-y-0.5 shadow-sm"
+                  className="p-2.5 rounded-full bg-white dark:bg-[#141a26] border border-[#e8e3d9] dark:border-[#232d3f] text-[#131312] dark:text-white hover:border-[#fe5922] dark:hover:border-[#38bdf8] hover:text-[#fe5922] dark:hover:text-[#38bdf8] transition-all hover:-translate-y-0.5 shadow-sm"
                   aria-label="LinkedIn Profile"
                 >
                   <LinkedinIcon className="w-4 h-4" />
                 </a>
                 <a
-                  href={`mailto:${personalInfo.email}`}
-                  className="p-2 rounded-lg bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-400 hover:border-cyan-500 hover:text-cyan-600 dark:hover:text-cyan-400 transition-all hover:-translate-y-0.5 shadow-sm"
-                  aria-label="Send Email"
-                >
-                  <Mail className="w-4 h-4" />
-                </a>
-                <a
                   href={personalInfo.whatsappUrl}
                   target="_blank"
                   rel="noreferrer"
-                  className="p-2 rounded-lg bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-400 hover:border-cyan-500 hover:text-cyan-600 dark:hover:text-cyan-400 transition-all hover:-translate-y-0.5 shadow-sm"
-                  aria-label="WhatsApp Chat"
+                  className="p-2.5 rounded-full bg-white dark:bg-[#141a26] border border-[#e8e3d9] dark:border-[#232d3f] text-[#131312] dark:text-white hover:border-[#fe5922] dark:hover:border-[#38bdf8] hover:text-[#fe5922] dark:hover:text-[#38bdf8] transition-all hover:-translate-y-0.5 shadow-sm"
+                  aria-label="WhatsApp Contact"
                 >
                   <WhatsappIcon className="w-4 h-4" />
                 </a>
               </div>
             </div>
+
           </div>
 
-          {/* Right Column: Visual Showcase (Profile + Dev Terminal) */}
-          <div className="lg:col-span-5 flex flex-col items-center justify-center relative">
+          {/* Right Column: SkillClass Signature Showcase with Portrait & Stats */}
+          <div className="lg:col-span-5 relative flex justify-center">
             
-            {/* Profile Frame with floating animation and glowing accent */}
-            <div className="relative w-64 sm:w-72 aspect-square rounded-3xl p-1 bg-gradient-to-tr from-cyan-500 via-indigo-500 to-purple-500 shadow-2xl shadow-cyan-500/20 group animate-float-slow">
-              <div className="w-full h-full rounded-[22px] overflow-hidden bg-slate-950 relative">
+            {/* Outer Container with Warm Border and Shadow */}
+            <div className="relative w-full max-w-md rounded-[32px] bg-gradient-to-b from-white to-[#f5f2eb] dark:from-[#151b27] dark:to-[#0f141f] p-4 sm:p-5 border border-[#e8e3d9] dark:border-[#232d3f] shadow-2xl">
+              
+              {/* Profile Image with Rounded Framing */}
+              <div className="relative rounded-2xl overflow-hidden aspect-[4/4.6] bg-[#e8e3d9] dark:bg-[#1a2233] border border-[#e8e3d9]/80 dark:border-[#232d3f]">
                 <img
                   src={personalInfo.profileImage}
-                  alt={personalInfo.name}
-                  className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                  alt="Nithyananthan N — Full Stack Developer"
+                  className="w-full h-full object-cover object-top transition-transform duration-700 hover:scale-105"
                   loading="eager"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent"></div>
-                <div className="absolute bottom-3 left-3 right-3 text-center">
-                  <span className="text-xs font-mono font-medium text-slate-100 bg-slate-950/80 px-2.5 py-1 rounded-full backdrop-blur-md border border-slate-800">
-                    Nithyananthan · MCA 2026
-                  </span>
+
+                {/* Subtle gradient overlay at bottom of photo */}
+                <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-black/70 via-black/30 to-transparent flex items-end p-4">
+                  <div className="text-white">
+                    <div className="text-xs font-mono uppercase tracking-wider text-cyan-300 font-semibold">
+                      Full Stack Developer
+                    </div>
+                    <div className="text-base font-bold">
+                      {personalInfo.name}
+                    </div>
+                  </div>
                 </div>
               </div>
 
-              {/* Floating Tech Badge 1: React */}
-              <div className="absolute -top-3 -right-3 px-3 py-1.5 rounded-xl bg-white/95 dark:bg-slate-900/95 border border-slate-200 dark:border-cyan-500/40 backdrop-blur-md shadow-lg flex items-center gap-1.5">
-                <span className="w-2 h-2 rounded-full bg-cyan-500"></span>
-                <span className="text-xs font-mono font-bold text-cyan-700 dark:text-cyan-300">React.js</span>
-              </div>
-
-              {/* Floating Tech Badge 2: Node.js */}
-              <div className="absolute -bottom-3 -left-3 px-3 py-1.5 rounded-xl bg-white/95 dark:bg-slate-900/95 border border-slate-200 dark:border-emerald-500/40 backdrop-blur-md shadow-lg flex items-center gap-1.5">
-                <span className="w-2 h-2 rounded-full bg-emerald-500"></span>
-                <span className="text-xs font-mono font-bold text-emerald-700 dark:text-emerald-300">Node.js</span>
-              </div>
-            </div>
-
-            {/* Developer Terminal Card below */}
-            <div className="mt-8 w-full max-w-sm rounded-2xl glass-panel p-4 text-xs font-mono border border-slate-200 dark:border-slate-800/80 shadow-xl">
-              <div className="flex items-center justify-between pb-2 mb-2.5 border-b border-slate-200 dark:border-slate-800/70">
-                <div className="flex items-center gap-1.5">
-                  <span className="w-2.5 h-2.5 rounded-full bg-rose-500"></span>
-                  <span className="w-2.5 h-2.5 rounded-full bg-amber-500"></span>
-                  <span className="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
+              {/* Floating Stat Badge 1: MCA CGPA */}
+              <div className="absolute -top-4 -left-3 sm:-left-6 bg-white dark:bg-[#141a26] border border-[#e8e3d9] dark:border-[#232d3f] rounded-2xl p-3 shadow-xl flex items-center gap-3 animate-float-slow">
+                <div className="w-10 h-10 rounded-xl bg-[#fe5922]/10 dark:bg-[#38bdf8]/10 text-[#fe5922] dark:text-[#38bdf8] flex items-center justify-center font-bold">
+                  <GraduationCap className="w-5 h-5" />
                 </div>
-                <span className="text-slate-500 dark:text-slate-400 text-[11px]">dev@nithyananthan:~$</span>
+                <div>
+                  <div className="text-xs text-[#676561] dark:text-[#94a3b8] font-mono">MCA Score</div>
+                  <div className="text-sm font-extrabold text-[#131312] dark:text-white font-mono">
+                    8.1 CGPA
+                  </div>
+                </div>
               </div>
-              <div className="space-y-1.5 text-slate-800 dark:text-slate-300">
-                <p>
-                  <span className="text-cyan-600 dark:text-cyan-400 font-semibold">const</span> <span className="text-indigo-600 dark:text-indigo-300 font-semibold">developer</span> = &#123;
-                </p>
-                <p className="pl-4">
-                  role: <span className="text-emerald-700 dark:text-emerald-400 font-semibold">"Full Stack Developer"</span>,
-                </p>
-                <p className="pl-4">
-                  education: <span className="text-emerald-700 dark:text-emerald-400 font-semibold">"MCA Final Year (8.1 CGPA)"</span>,
-                </p>
-                <p className="pl-4">
-                  stack: [<span className="text-amber-700 dark:text-amber-300 font-semibold">"React"</span>, <span className="text-amber-700 dark:text-amber-300 font-semibold">"Node"</span>, <span className="text-amber-700 dark:text-amber-300 font-semibold">"MongoDB"</span>, <span className="text-amber-700 dark:text-amber-300 font-semibold">"Python"</span>],
-                </p>
-                <p className="pl-4">
-                  readyForWork: <span className="text-cyan-600 dark:text-cyan-400 font-semibold">true</span>
-                </p>
-                <p>&#125;;</p>
+
+              {/* Floating Stat Badge 2: Nitroware Internship */}
+              <div className="absolute -bottom-4 -right-3 sm:-right-6 bg-white dark:bg-[#141a26] border border-[#e8e3d9] dark:border-[#232d3f] rounded-2xl p-3 shadow-xl flex items-center gap-3">
+                <div className="w-10 h-10 rounded-xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 flex items-center justify-center font-bold">
+                  <Briefcase className="w-5 h-5" />
+                </div>
+                <div>
+                  <div className="text-xs text-[#676561] dark:text-[#94a3b8] font-mono">Nitroware Tech</div>
+                  <div className="text-sm font-extrabold text-[#131312] dark:text-white font-mono">
+                    Full Stack Intern
+                  </div>
+                </div>
               </div>
+
             </div>
 
           </div>
+
         </div>
+
+        {/* SkillClass Bottom Tech Ticker Bar */}
+        <div className="mt-16 pt-8 border-t border-[#e8e3d9] dark:border-[#232d3f]">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+            <span className="text-xs font-mono uppercase tracking-wider text-[#676561] dark:text-[#94a3b8] font-semibold shrink-0">
+              Verified Core Toolkit:
+            </span>
+            <div className="flex items-center gap-2 flex-wrap justify-center sm:justify-end">
+              {["React.js", "Node.js", "Express.js", "MongoDB", "Python", "JavaScript", "MySQL", "REST APIs", "JWT Auth", "Git"].map((tech) => (
+                <span
+                  key={tech}
+                  className="px-3 py-1 rounded-full text-xs font-mono font-medium bg-white/80 dark:bg-[#141a26]/80 border border-[#e8e3d9] dark:border-[#232d3f] text-[#131312] dark:text-[#f3f4f6]"
+                >
+                  {tech}
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+
       </div>
     </section>
   );
 }
-
