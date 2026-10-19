@@ -1,161 +1,120 @@
 import React from "react";
-import { motion } from "framer-motion";
 import { ArrowUp, Mail, FileDown } from "lucide-react";
 import { GithubIcon, LinkedinIcon, WhatsappIcon } from "./Icons";
-import RollingText from "./RollingText";
 import { personalInfo } from "../data/portfolioData";
-import { easeSkillClass } from "../utils/motion";
 
 export default function Footer() {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  const navLinks = [
-    { label: "Home", href: "#home" },
-    { label: "About", href: "#about" },
-    { label: "Skills", href: "#skills" },
-    { label: "Experience", href: "#experience" },
-    { label: "Projects", href: "#projects" },
-    { label: "Education", href: "#education" },
-    { label: "Certifications", href: "#certifications" },
-    { label: "Contact", href: "#contact" },
-  ];
-
   return (
-    <footer className="relative border-t border-[#e8e3d9] dark:border-[#232d3f] bg-white/70 dark:bg-[#0a0e15]/70 backdrop-blur-md pt-16 pb-12">
+    <footer className="relative border-t border-white/10 bg-[#070709] text-[#8e8e99] pt-16 pb-28">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Top Row: Brand & Quick Navigation */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, ease: easeSkillClass }}
-          className="grid grid-cols-1 md:grid-cols-12 gap-8 pb-12 border-b border-[#e8e3d9] dark:border-[#232d3f]"
-        >
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 pb-12 border-b border-white/10">
           
           {/* Brand Info */}
-          <div className="md:col-span-5 space-y-3">
-            <div className="flex items-center gap-2.5">
-              <div className="w-8 h-8 rounded-full bg-[#131312] dark:bg-white text-white dark:text-[#131312] flex items-center justify-center font-bold text-sm">
+          <div className="md:col-span-6 space-y-4">
+            <div className="flex items-center gap-3">
+              <div className="w-8 h-8 rounded-xl bg-[#ff2222] text-white flex items-center justify-center font-black text-sm shadow-[0_0_15px_rgba(255,34,34,0.4)]">
                 N
               </div>
-              <span className="font-extrabold text-lg text-[#131312] dark:text-white tracking-tight">
-                {personalInfo.name}
+              <span className="font-black text-lg text-white tracking-wider">
+                NITHYANANTHAN <span className="text-[#ff2222] font-mono">/</span> DEV
               </span>
             </div>
             
-            <p className="text-xs sm:text-sm text-[#5e5d59] dark:text-[#94a3b8] max-w-sm leading-relaxed">
-              MCA fresher & Full Stack Developer from Coimbatore. Focused on building responsive, maintainable web applications using React, Node, Express, MongoDB, and MySQL.
+            <p className="text-xs sm:text-sm text-[#8e8e99] max-w-md leading-relaxed font-sans">
+              MCA Graduate (8.1 CGPA) &amp; Full Stack Developer based in Coimbatore, Tamil Nadu. Specializing in high-performance React user interfaces, scalable Express REST APIs, MongoDB, MySQL, and Python services.
             </p>
 
-            <div className="pt-1 flex items-center gap-2.5">
-              <motion.a
+            <div className="flex items-center gap-3 pt-1">
+              <a
                 href={personalInfo.githubUrl}
                 target="_blank"
                 rel="noreferrer"
-                whileHover={{ y: -3, scale: 1.08 }}
-                whileTap={{ scale: 0.92 }}
-                className="p-2 rounded-full bg-[#faf8f5] dark:bg-[#141a26] border border-[#e8e3d9] dark:border-[#232d3f] text-[#131312] dark:text-white hover:text-[#fe5922] dark:hover:text-[#38bdf8] transition-colors"
+                className="p-2.5 rounded-xl bg-[#111118] border border-white/10 hover:border-[#ff2222]/50 text-white transition-all hover:scale-105"
                 aria-label="GitHub"
               >
                 <GithubIcon className="w-4 h-4" />
-              </motion.a>
-              <motion.a
+              </a>
+
+              <a
                 href={personalInfo.linkedinUrl}
                 target="_blank"
                 rel="noreferrer"
-                whileHover={{ y: -3, scale: 1.08 }}
-                whileTap={{ scale: 0.92 }}
-                className="p-2 rounded-full bg-[#faf8f5] dark:bg-[#141a26] border border-[#e8e3d9] dark:border-[#232d3f] text-[#131312] dark:text-white hover:text-[#fe5922] dark:hover:text-[#38bdf8] transition-colors"
+                className="p-2.5 rounded-xl bg-[#111118] border border-white/10 hover:border-[#ff2222]/50 text-[#0a66c2] transition-all hover:scale-105"
                 aria-label="LinkedIn"
               >
                 <LinkedinIcon className="w-4 h-4" />
-              </motion.a>
-              <motion.a
-                href={`mailto:${personalInfo.email}`}
-                whileHover={{ y: -3, scale: 1.08 }}
-                whileTap={{ scale: 0.92 }}
-                className="p-2 rounded-full bg-[#faf8f5] dark:bg-[#141a26] border border-[#e8e3d9] dark:border-[#232d3f] text-[#131312] dark:text-white hover:text-[#fe5922] dark:hover:text-[#38bdf8] transition-colors"
-                aria-label="Email"
-              >
-                <Mail className="w-4 h-4" />
-              </motion.a>
-              <motion.a
+              </a>
+
+              <a
                 href={personalInfo.whatsappUrl}
                 target="_blank"
                 rel="noreferrer"
-                whileHover={{ y: -3, scale: 1.08 }}
-                whileTap={{ scale: 0.92 }}
-                className="p-2 rounded-full bg-[#faf8f5] dark:bg-[#141a26] border border-[#e8e3d9] dark:border-[#232d3f] text-[#131312] dark:text-white hover:text-[#fe5922] dark:hover:text-[#38bdf8] transition-colors"
+                className="p-2.5 rounded-xl bg-[#111118] border border-white/10 hover:border-[#ff2222]/50 text-[#25d366] transition-all hover:scale-105"
                 aria-label="WhatsApp"
               >
                 <WhatsappIcon className="w-4 h-4" />
-              </motion.a>
+              </a>
             </div>
           </div>
 
-          {/* Quick Nav Links */}
-          <div className="md:col-span-4">
-            <div className="text-xs font-mono uppercase tracking-wider text-[#676561] dark:text-[#94a3b8] font-bold mb-3">
-              Sections
-            </div>
-            <div className="grid grid-cols-2 gap-2.5 text-xs">
-              {navLinks.map((link) => (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  className="group inline-flex items-center text-[#5e5d59] dark:text-[#94a3b8] hover:text-[#131312] dark:hover:text-white transition-colors py-0.5"
-                >
-                  <RollingText text={link.label} />
-                </a>
-              ))}
+          {/* Quick Links Column */}
+          <div className="md:col-span-3 space-y-2">
+            <h4 className="text-xs font-mono uppercase tracking-widest text-white font-bold mb-3">
+              SCENES
+            </h4>
+            <div className="grid grid-cols-2 gap-2 text-xs font-mono">
+              <a href="#home" className="hover:text-[#ff2222] transition-colors">01 Split Hero</a>
+              <a href="#about" className="hover:text-[#ff2222] transition-colors">02 About</a>
+              <a href="#skills" className="hover:text-[#ff2222] transition-colors">03 Skills</a>
+              <a href="#projects" className="hover:text-[#ff2222] transition-colors">04 Projects</a>
+              <a href="#experience" className="hover:text-[#ff2222] transition-colors">05 Experience</a>
+              <a href="#contact" className="hover:text-[#ff2222] transition-colors">06 Contact</a>
             </div>
           </div>
 
-          {/* Direct Resume Download */}
-          <div className="md:col-span-3 flex flex-col justify-between items-start md:items-end">
-            <div className="space-y-2 text-left md:text-right">
-              <div className="text-xs font-mono uppercase tracking-wider text-[#676561] dark:text-[#94a3b8] font-bold">
-                Official Resume
-              </div>
-              <p className="text-xs text-[#5e5d59] dark:text-[#94a3b8]">
-                Updated Oct 2026 version
-              </p>
-              <motion.a
-                href={personalInfo.resumePath}
-                download="Nithyananthan_Full_Stack_Developer_Resume.pdf"
-                whileHover={{ y: -2, scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                className="sc-btn-primary text-xs py-2 px-4 inline-flex mt-1"
-              >
-                <FileDown className="w-3.5 h-3.5" />
-                <span>Download Resume</span>
-              </motion.a>
-            </div>
-
-            <motion.button
-              type="button"
-              onClick={scrollToTop}
-              whileHover={{ y: -2 }}
-              className="mt-6 inline-flex items-center gap-1.5 text-xs font-mono text-[#676561] dark:text-[#94a3b8] hover:text-[#131312] dark:hover:text-white transition-colors cursor-pointer group"
+          {/* Direct CTA */}
+          <div className="md:col-span-3 space-y-3 sm:text-right">
+            <h4 className="text-xs font-mono uppercase tracking-widest text-white font-bold mb-3">
+              IMMEDIATE HIRE
+            </h4>
+            <p className="text-xs text-[#8e8e99]">
+              Available for full-time Full Stack Developer &amp; Frontend roles.
+            </p>
+            <a
+              href={personalInfo.resumePath}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-[#ff2222] text-white text-xs font-mono font-bold hover:bg-[#ff3b3b] transition-colors shadow-lg"
             >
-              <span>Back to Top</span>
-              <ArrowUp className="w-3.5 h-3.5 transition-transform group-hover:-translate-y-1" />
-            </motion.button>
+              <FileDown className="w-3.5 h-3.5" />
+              <span>Resume PDF</span>
+            </a>
           </div>
 
-        </motion.div>
+        </div>
 
-        {/* Bottom Copyright Row */}
-        <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#676561] dark:text-[#94a3b8]">
-          <div>
-            © {new Date().getFullYear()} {personalInfo.name}. All verified rights reserved.
+        {/* Bottom Colophon (Ref 2 Style) */}
+        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-[#71717a]">
+          <div className="flex items-center gap-2">
+            <span>© 2026 NITHYANANTHAN N</span>
+            <span>•</span>
+            <span className="text-[#a1a1aa]">GSAP SPLIT-SCREEN + INFINITE REEL</span>
           </div>
-          <div className="font-mono text-[11px]">
-            Designed with SkillClass aesthetic · Framer Motion smooth animations
-          </div>
+
+          <button
+            type="button"
+            onClick={scrollToTop}
+            className="inline-flex items-center gap-1.5 hover:text-white transition-colors"
+          >
+            <span>RETURN TO TOP</span>
+            <ArrowUp className="w-3.5 h-3.5 text-[#ff2222]" />
+          </button>
         </div>
 
       </div>

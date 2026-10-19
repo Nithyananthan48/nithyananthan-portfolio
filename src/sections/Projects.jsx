@@ -6,49 +6,50 @@ import {
   CheckCircle2, 
   Maximize2,
   Brain,
-  Star,
   Lock,
-  ArrowRight
+  ArrowRight,
+  Database,
+  Layers,
+  Sparkles
 } from "lucide-react";
 import { GithubIcon } from "../components/Icons";
 import { projects } from "../data/portfolioData";
 import ProjectModal from "../components/ProjectModal";
 import TiltCard from "../components/TiltCard";
-import { easeSkillClass } from "../utils/motion";
 
 export default function Projects() {
   const [selectedProject, setSelectedProject] = useState(null);
 
   return (
-    <section id="projects" className="py-20 md:py-28 relative">
+    <section id="projects" data-scene="Projects" className="py-24 md:py-32 relative bg-[#070709] text-[#f5f5f7]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Header — SkillClass Editorial Reveal */}
+        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.1 }}
-          transition={{ duration: 0.7, ease: easeSkillClass }}
+          transition={{ duration: 0.6 }}
           className="flex flex-col items-center text-center mb-16"
         >
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white dark:bg-[#141a26] border border-[#e8e3d9] dark:border-[#232d3f] text-[#fe5922] dark:text-[#38bdf8] text-xs font-mono uppercase tracking-widest mb-4 shadow-sm">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#111118] border border-white/10 text-[#ff2222] text-xs font-mono uppercase tracking-widest mb-4">
             <FolderGit2 className="w-3.5 h-3.5" />
-            <span>Selected Full Stack Works</span>
+            <span>04 // FEATURED PRODUCTION WORK</span>
           </div>
 
-          <h2 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-[#131312] dark:text-white tracking-tight max-w-3xl leading-[1.12]">
-            Real applications.{" "}
-            <span className="font-editorial-italic font-normal text-[#fe5922] dark:text-[#38bdf8]">
-              Built from end to end.
+          <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight max-w-3xl leading-[1.1]">
+            Engineered systems.{" "}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#ff2222] to-[#ff6666]">
+              Real problems solved.
             </span>
           </h2>
           
-          <p className="text-[#5e5d59] dark:text-[#94a3b8] max-w-xl text-sm sm:text-base mt-3">
-            Exploration of my verified full-stack applications, relational and document databases, and AI-assisted research tools.
+          <p className="text-[#8e8e99] max-w-xl text-sm sm:text-base mt-4 font-sans leading-relaxed">
+            Verified full-stack web applications, relational schemas, and AI-assisted tools built with modern industry standards.
           </p>
         </motion.div>
 
-        {/* SkillClass Signature Stacking Sticky Cards */}
+        {/* Stacking Project Cards (Inspired by Reference 1 & 2) */}
         <div className="space-y-12 pb-12">
           {projects.map((proj, idx) => {
             return (
@@ -56,18 +57,17 @@ export default function Projects() {
                 key={proj.id}
                 className="sticky transition-transform duration-300"
                 style={{
-                  top: `calc(90px + ${idx * 28}px)`,
+                  top: `calc(84px + ${idx * 24}px)`,
                   zIndex: idx + 10,
                   transformOrigin: "50% 0% 0",
                 }}
               >
                 <motion.div
-                  initial={{ opacity: 0, y: 45 }}
+                  initial={{ opacity: 0, y: 40 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, amount: 0.1 }}
-                  transition={{ duration: 0.75, delay: idx * 0.08, ease: easeSkillClass }}
-                  whileHover={{ y: -4, transition: { duration: 0.25, ease: easeSkillClass } }}
-                  className="sc-card overflow-hidden p-6 sm:p-10 shadow-2xl bg-white dark:bg-[#141a26] border border-[#e8e3d9] dark:border-[#232d3f] group"
+                  transition={{ duration: 0.7, delay: idx * 0.08 }}
+                  className="rb-card overflow-hidden p-6 sm:p-10 shadow-2xl bg-[#111116] border border-white/10 hover:border-[#ff2222]/40 group"
                 >
                   <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
                     
@@ -76,203 +76,135 @@ export default function Projects() {
                       
                       {/* Top Row: Number + Badge */}
                       <div className="flex items-center gap-3">
-                        <span className="font-editorial-italic text-3xl sm:text-4xl text-[#fe5922] dark:text-[#38bdf8] font-normal">
+                        <span className="font-mono text-3xl sm:text-4xl text-[#ff2222] font-black">
                           {proj.number}
                         </span>
-                        <span className="h-4 w-px bg-[#e8e3d9] dark:bg-[#232d3f]" />
-                        <span className="px-3 py-1 rounded-full text-xs font-mono font-semibold bg-[#faf8f5] dark:bg-[#1f2838] border border-[#e8e3d9] dark:border-[#232d3f] text-[#131312] dark:text-[#f3f4f6]">
+                        <span className="h-4 w-px bg-white/10" />
+                        <span className="px-3 py-1 rounded-full text-xs font-mono font-semibold bg-white/5 border border-white/10 text-white">
                           {proj.badge}
                         </span>
-                        <span className="text-xs font-mono text-emerald-600 dark:text-emerald-400 font-medium ml-auto flex items-center gap-1.5">
+                        <span className="text-xs font-mono text-emerald-400 font-medium ml-auto flex items-center gap-1.5">
                           <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
                           {proj.statusText}
                         </span>
                       </div>
 
                       {/* Project Title */}
-                      <h3 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#131312] dark:text-white tracking-tight leading-tight">
+                      <h3 className="text-2xl sm:text-3xl lg:text-4xl font-black text-white tracking-tight leading-tight">
                         {proj.title}
                       </h3>
 
                       {/* Short Description */}
-                      <p className="text-sm sm:text-base text-[#5e5d59] dark:text-[#94a3b8] leading-relaxed">
+                      <p className="text-sm sm:text-base text-[#a1a1aa] leading-relaxed font-sans">
                         {proj.shortDescription}
                       </p>
 
-                      {/* Key Technical Features */}
-                      <div className="space-y-2.5 pt-1">
-                        {proj.features.slice(0, 3).map((f, i) => (
-                          <div key={i} className="flex items-start gap-2.5 text-xs sm:text-sm text-[#131312] dark:text-[#f3f4f6]">
-                            <CheckCircle2 className="w-4 h-4 text-[#fe5922] dark:text-[#38bdf8] shrink-0 mt-0.5" />
-                            <span>{f}</span>
+                      {/* Key Highlights */}
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-2">
+                        {proj.highlights?.slice(0, 4).map((h, hIdx) => (
+                          <div key={hIdx} className="flex items-start gap-2 text-xs font-mono text-[#d4d4d8]">
+                            <CheckCircle2 className="w-4 h-4 text-[#ff2222] shrink-0 mt-0.5" />
+                            <span>{h}</span>
                           </div>
                         ))}
                       </div>
 
-                      {/* Technologies Pill Grid */}
-                      <div className="pt-2 flex flex-wrap gap-2">
-                        {proj.technologies.map((tech) => (
-                          <motion.span
-                            key={tech}
-                            whileHover={{ y: -2 }}
-                            transition={{ duration: 0.15 }}
-                            className="px-3 py-1 rounded-lg text-xs font-mono font-medium bg-[#faf8f5] dark:bg-[#1a2233] border border-[#e8e3d9] dark:border-[#232d3f] text-[#131312] dark:text-[#f3f4f6] cursor-default"
+                      {/* Tech Stack Pills */}
+                      <div className="flex flex-wrap gap-2 pt-2">
+                        {proj.tags?.map((tag, tIdx) => (
+                          <span
+                            key={tIdx}
+                            className="px-2.5 py-1 rounded-md text-xs font-mono bg-black/50 border border-white/10 text-[#d4d4d8]"
                           >
-                            {tech}
-                          </motion.span>
+                            {tag}
+                          </span>
                         ))}
                       </div>
 
                       {/* Action Buttons */}
-                      <div className="pt-3 flex flex-wrap items-center gap-3">
-                        <motion.a
-                          href={proj.githubUrl}
-                          target="_blank"
-                          rel="noreferrer"
-                          whileHover={{ y: -2, scale: 1.02 }}
-                          whileTap={{ scale: 0.98 }}
-                          transition={{ duration: 0.2, ease: easeSkillClass }}
-                          className="sc-btn-primary text-xs py-2.5 px-5 group inline-flex items-center gap-2"
-                        >
-                          <GithubIcon className="w-4 h-4" />
-                          <span>GitHub Repository</span>
-                          <ArrowRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-1" />
-                        </motion.a>
+                      <div className="flex flex-wrap items-center gap-3 pt-4 border-t border-white/10">
+                        {proj.liveUrl && (
+                          <a
+                            href={proj.liveUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="btn-red-primary text-xs"
+                          >
+                            <span>Live App</span>
+                            <ExternalLink className="w-3.5 h-3.5" />
+                          </a>
+                        )}
 
-                        <motion.button
+                        {proj.githubUrl && (
+                          <a
+                            href={proj.githubUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="btn-dark-secondary text-xs"
+                          >
+                            <GithubIcon className="w-3.5 h-3.5" />
+                            <span>Source Code</span>
+                          </a>
+                        )}
+
+                        <button
                           type="button"
                           onClick={() => setSelectedProject(proj)}
-                          whileHover={{ y: -2, scale: 1.02 }}
-                          whileTap={{ scale: 0.98 }}
-                          transition={{ duration: 0.2, ease: easeSkillClass }}
-                          className="sc-btn-secondary text-xs py-2.5 px-5 cursor-pointer group inline-flex items-center gap-1.5"
+                          className="px-4 py-2.5 rounded-full text-xs font-mono font-medium text-[#a1a1aa] hover:text-white hover:bg-white/5 transition-colors ml-auto flex items-center gap-1.5"
                         >
-                          <Maximize2 className="w-3.5 h-3.5 text-[#fe5922] dark:text-[#38bdf8] transition-transform duration-200 group-hover:scale-110" />
-                          <span>Architecture Details</span>
-                        </motion.button>
-
-                        {proj.liveDemoUrl && (
-                          <motion.a
-                            href={proj.liveDemoUrl}
-                            target="_blank"
-                            rel="noreferrer"
-                            whileHover={{ x: 2 }}
-                            className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-full text-xs font-semibold text-emerald-600 dark:text-emerald-400 hover:text-emerald-700 transition-colors"
-                          >
-                            <ExternalLink className="w-3.5 h-3.5" />
-                            <span>Live Demo</span>
-                          </motion.a>
-                        )}
+                          <Maximize2 className="w-3.5 h-3.5" />
+                          <span>Technical Deep-Dive</span>
+                        </button>
                       </div>
 
                     </div>
 
-                    {/* Right Column: Interactive Visual UI Simulation Mockup with 3D Tilt */}
+                    {/* Right Column: Visual Preview with 3D Tilt */}
                     <div className="lg:col-span-5">
-                      <TiltCard maxTilt={10} className="rounded-2xl">
-                        <div className="rounded-2xl bg-[#faf8f5] dark:bg-[#0c1017] border border-[#e8e3d9] dark:border-[#232d3f] p-5 shadow-inner">
-                        
-                        {/* Window header */}
-                        <div className="flex items-center justify-between pb-3 mb-4 border-b border-[#e8e3d9] dark:border-[#232d3f]">
-                          <div className="flex items-center gap-1.5">
-                            <span className="w-2.5 h-2.5 rounded-full bg-rose-400/80"></span>
-                            <span className="w-2.5 h-2.5 rounded-full bg-amber-400/80"></span>
-                            <span className="w-2.5 h-2.5 rounded-full bg-emerald-400/80"></span>
+                      <TiltCard className="rounded-2xl overflow-hidden border border-white/10 bg-black/60 shadow-2xl relative group/card">
+                        {/* Terminal Window Header */}
+                        <div className="bg-[#181822] px-4 py-3 border-b border-white/10 flex items-center justify-between">
+                          <div className="flex items-center gap-2">
+                            <span className="w-3 h-3 rounded-full bg-[#ff5f56]" />
+                            <span className="w-3 h-3 rounded-full bg-[#ffbd2e]" />
+                            <span className="w-3 h-3 rounded-full bg-[#27c93f]" />
                           </div>
-                          <span className="text-[10px] font-mono text-[#676561] dark:text-[#94a3b8]">
-                            {proj.category}
+                          <span className="text-[11px] font-mono text-[#8e8e99]">
+                            {proj.id}.architecture.json
                           </span>
                         </div>
 
-                        {/* Simulation per project */}
-                        {proj.previewType === "ai-research" && (
-                          <div className="space-y-3">
-                            <div className="p-3.5 rounded-xl bg-white dark:bg-[#141a26] border border-[#e8e3d9] dark:border-[#232d3f] shadow-sm">
-                              <div className="flex items-center justify-between text-xs font-mono font-medium text-[#131312] dark:text-white">
-                                <span className="flex items-center gap-2">
-                                  <Brain className="w-4 h-4 text-[#fe5922] dark:text-[#38bdf8] animate-pulse" />
-                                  <span>PDF Text Extraction Engine</span>
-                                </span>
-                                <span className="text-[10px] px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-600 font-mono">Completed</span>
-                              </div>
-                              <div className="text-[11px] text-[#676561] dark:text-[#94a3b8] mt-2 font-mono">
-                                &gt; Extracted 14,200 tokens from literature corpus.
-                              </div>
-                            </div>
-
-                            <div className="grid grid-cols-2 gap-2">
-                              <div className="p-3 rounded-xl bg-white dark:bg-[#141a26] border border-[#e8e3d9] dark:border-[#232d3f]">
-                                <div className="text-[10px] font-mono text-[#676561] dark:text-[#94a3b8]">Methodology Gap</div>
-                                <div className="text-xs font-bold text-[#131312] dark:text-white mt-1">Identified</div>
-                              </div>
-                              <div className="p-3 rounded-xl bg-white dark:bg-[#141a26] border border-[#e8e3d9] dark:border-[#232d3f]">
-                                <div className="text-[10px] font-mono text-[#676561] dark:text-[#94a3b8]">Dataset Gap</div>
-                                <div className="text-xs font-bold text-[#131312] dark:text-white mt-1">Detected</div>
-                              </div>
-                            </div>
-
-                            <div className="p-3 rounded-xl bg-[#fe5922]/5 dark:bg-[#38bdf8]/5 border border-[#fe5922]/20 dark:border-[#38bdf8]/20 text-[11px] font-mono text-[#a64025] dark:text-[#38bdf8]">
-                              React UI + MongoDB Storage Active
-                            </div>
+                        {/* Interactive Project Visual Card */}
+                        <div className="p-6 sm:p-8 space-y-4">
+                          <div className="p-4 rounded-xl bg-black/40 border border-white/5 font-mono text-xs text-[#a1a1aa] space-y-2">
+                            <div className="text-[#ff2222] font-bold">&gt; PROJECT_SUMMARY:</div>
+                            <div className="text-white font-semibold">{proj.title}</div>
+                            <div>• Role: Full Stack Developer</div>
+                            <div>• Architecture: Modular REST + Client UI</div>
+                            <div>• DB: {proj.tags?.find(t => t.includes("Mongo") || t.includes("MySQL")) || "Optimized Storage"}</div>
                           </div>
-                        )}
 
-                        {proj.previewType === "blog" && (
-                          <div className="space-y-3">
-                            <div className="p-3 rounded-xl bg-white dark:bg-[#141a26] border border-[#e8e3d9] dark:border-[#232d3f] flex items-center justify-between shadow-sm">
-                              <div className="flex items-center gap-2 text-xs font-mono font-medium text-[#131312] dark:text-white">
-                                <Lock className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
-                                <span>JWT Authentication Validated</span>
-                              </div>
-                              <span className="text-[10px] px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-600 font-mono">Bearer Token</span>
+                          <div className="p-4 rounded-xl bg-gradient-to-br from-[#ff2222]/10 to-transparent border border-[#ff2222]/20 flex items-center justify-between">
+                            <div>
+                              <div className="text-xs font-mono text-white/70">DEPLOYMENT STATUS</div>
+                              <div className="text-sm font-bold text-white">Production Ready</div>
                             </div>
-
-                            <div className="p-3.5 rounded-xl bg-white dark:bg-[#141a26] border border-[#e8e3d9] dark:border-[#232d3f] space-y-2">
-                              <div className="text-xs font-bold text-[#131312] dark:text-white">MERN Post Publisher</div>
-                              <div className="flex items-center gap-2 text-[10px] font-mono text-[#676561] dark:text-[#94a3b8]">
-                                <span className="px-1.5 py-0.5 rounded bg-blue-100 dark:bg-blue-900/40 text-blue-700 dark:text-blue-300">POST</span>
-                                <span>/api/posts/create</span>
-                                <span className="ml-auto text-emerald-600">201 Created</span>
-                              </div>
-                            </div>
-
-                            <div className="p-2.5 rounded-xl bg-[#faf8f5] dark:bg-[#141a26] border border-[#e8e3d9] dark:border-[#232d3f] flex justify-between text-[11px] font-mono text-[#676561] dark:text-[#94a3b8]">
-                              <span>CRUD Operations</span>
-                              <span className="text-[#131312] dark:text-white font-semibold">MongoDB Atlas</span>
-                            </div>
+                            <span className="px-3 py-1 rounded-full bg-[#ff2222] text-white text-xs font-mono font-bold">
+                              Verified
+                            </span>
                           </div>
-                        )}
+                        </div>
 
-                        {proj.previewType === "movie" && (
-                          <div className="space-y-3">
-                            <div className="p-3.5 rounded-xl bg-white dark:bg-[#141a26] border border-[#e8e3d9] dark:border-[#232d3f] shadow-sm">
-                              <div className="flex items-center justify-between mb-2">
-                                <div className="flex items-center gap-1.5 text-amber-500">
-                                  {[...Array(5)].map((_, i) => (
-                                    <Star key={i} className="w-3.5 h-3.5 fill-current" />
-                                  ))}
-                                </div>
-                                <span className="text-xs font-mono font-bold text-[#131312] dark:text-white">5.0 / 5.0</span>
-                              </div>
-                              <div className="text-xs text-[#131312] dark:text-white font-medium">
-                                User reviews saved via Node & Express REST API
-                              </div>
-                            </div>
-
-                            <div className="p-3 rounded-xl bg-white dark:bg-[#141a26] border border-[#e8e3d9] dark:border-[#232d3f] space-y-1">
-                              <div className="text-[10px] font-mono text-[#676561] dark:text-[#94a3b8]">Relational Database</div>
-                              <div className="text-xs font-bold text-[#131312] dark:text-white font-mono flex items-center justify-between">
-                                <span>MySQL Tables & Foreign Keys</span>
-                                <span className="text-emerald-600 text-[10px]">Connected</span>
-                              </div>
-                            </div>
-
-                            <div className="p-2.5 rounded-xl bg-[#faf8f5] dark:bg-[#141a26] border border-[#e8e3d9] dark:border-[#232d3f] text-[11px] font-mono text-[#676561] dark:text-[#94a3b8]">
-                              Responsive Vanilla JS Frontend + Express Router
-                            </div>
-                          </div>
-                        )}
-
+                        {/* Hover Overlay Button */}
+                        <div className="absolute inset-0 bg-black/80 backdrop-blur-sm opacity-0 group-hover/card:opacity-100 transition-opacity flex items-center justify-center p-6 text-center">
+                          <button
+                            type="button"
+                            onClick={() => setSelectedProject(proj)}
+                            className="btn-red-primary text-xs"
+                          >
+                            <Maximize2 className="w-4 h-4" />
+                            <span>View Full Case Study</span>
+                          </button>
                         </div>
                       </TiltCard>
                     </div>
@@ -286,7 +218,7 @@ export default function Projects() {
 
       </div>
 
-      {/* Project Detail Modal */}
+      {/* Case Study Modal */}
       {selectedProject && (
         <ProjectModal
           project={selectedProject}

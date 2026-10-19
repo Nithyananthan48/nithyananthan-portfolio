@@ -2,114 +2,87 @@ import React from "react";
 import { motion } from "framer-motion";
 import { Award, CheckCircle, ShieldCheck } from "lucide-react";
 import { certifications } from "../data/portfolioData";
-import { easeSkillClass, staggerContainer, staggerCard } from "../utils/motion";
 import TiltCard from "../components/TiltCard";
 
 export default function Certifications() {
   return (
-    <section id="certifications" className="py-20 md:py-28 relative">
+    <section id="certifications" data-scene="Certifications" className="py-24 md:py-32 relative bg-[#070709] text-[#f5f5f7]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Header — SkillClass Editorial Tag & Heading */}
+        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.1 }}
-          transition={{ duration: 0.7, ease: easeSkillClass }}
+          transition={{ duration: 0.6 }}
           className="flex flex-col items-center text-center mb-16"
         >
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white dark:bg-[#141a26] border border-[#e8e3d9] dark:border-[#232d3f] text-[#fe5922] dark:text-[#38bdf8] text-xs font-mono uppercase tracking-widest mb-4 shadow-sm">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#111118] border border-white/10 text-[#ff2222] text-xs font-mono uppercase tracking-widest mb-4">
             <Award className="w-3.5 h-3.5" />
-            <span>Verified Credentials</span>
+            <span>05.2 // CREDENTIAL REPOSITORY</span>
           </div>
 
-          <h2 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-[#131312] dark:text-white tracking-tight max-w-3xl leading-[1.12]">
-            Professional certifications.{" "}
-            <span className="font-editorial-italic font-normal text-[#fe5922] dark:text-[#38bdf8]">
-              Industry recognized.
+          <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight max-w-3xl leading-[1.1]">
+            Verified certifications.{" "}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#ff2222] to-[#ff6666]">
+              Technical rigor.
             </span>
           </h2>
           
-          <p className="text-[#5e5d59] dark:text-[#94a3b8] max-w-xl text-sm sm:text-base mt-3">
-            Credentialed coursework completed across Meta, IBM, MongoDB, Cisco, IIT Bombay, and One Roadmap.
+          <p className="text-[#8e8e99] max-w-xl text-sm sm:text-base mt-4 font-sans leading-relaxed">
+            Certifications completed across Meta, IBM, MongoDB, Cisco, IIT Bombay, and One Roadmap.
           </p>
         </motion.div>
 
-        {/* Certifications Grid matching SkillClass card system with staggered entrance */}
-        <motion.div
-          variants={staggerContainer(0.07, 0.1)}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.1 }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto"
-        >
+        {/* Certifications Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
           {certifications.map((cert, index) => (
             <motion.div
               key={index}
-              variants={staggerCard}
+              initial={{ opacity: 0, y: 25 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.1 }}
+              transition={{ duration: 0.5, delay: index * 0.06 }}
               className="h-full"
             >
               <TiltCard
                 maxTilt={8}
-                className="sc-card p-6 sm:p-7 flex flex-col justify-between group cursor-default h-full"
+                className="rb-card p-6 sm:p-7 flex flex-col justify-between group cursor-default h-full"
               >
                 <div>
                   {/* Header Tag + Year */}
                   <div className="flex items-center justify-between gap-2 mb-4">
-                    <span className="px-3 py-1 rounded-full text-xs font-mono font-semibold bg-[#faf8f5] dark:bg-[#1f2838] text-[#fe5922] dark:text-[#38bdf8] border border-[#e8e3d9] dark:border-[#232d3f]">
+                    <span className="px-3 py-1 rounded-full text-xs font-mono font-semibold bg-[#ff2222]/15 text-[#ff2222] border border-[#ff2222]/30">
                       {cert.provider}
                     </span>
-                    <span className="text-xs font-mono text-[#676561] dark:text-[#94a3b8]">
+                    <span className="text-xs font-mono text-[#71717a]">
                       {cert.year}
                     </span>
                   </div>
 
-                  {/* Title & Issuer */}
-                  <div className="flex items-start gap-3.5 mb-3">
-                    <motion.div
-                      whileHover={{ scale: 1.15, rotate: 6 }}
-                      transition={{ type: "spring", stiffness: 350 }}
-                      className="w-10 h-10 rounded-xl bg-white dark:bg-[#1a2233] border border-[#e8e3d9] dark:border-[#232d3f] flex items-center justify-center text-[#fe5922] dark:text-[#38bdf8] shrink-0 shadow-sm"
-                    >
-                      <ShieldCheck className="w-5 h-5" />
-                    </motion.div>
-                    <div>
-                      <h3 className="text-base sm:text-lg font-bold text-[#131312] dark:text-white leading-snug group-hover:text-[#fe5922] dark:group-hover:text-[#38bdf8] transition-colors">
-                        {cert.title}
-                      </h3>
-                      <p className="text-xs text-[#676561] dark:text-[#94a3b8] font-mono mt-1">
-                        {cert.issuer}
-                      </p>
-                    </div>
-                  </div>
+                  {/* Title */}
+                  <h3 className="text-lg font-bold text-white mb-2 leading-snug group-hover:text-[#ff2222] transition-colors">
+                    {cert.title}
+                  </h3>
 
-                  {/* Skills tags */}
-                  <div className="flex flex-wrap gap-1.5 mt-4 pt-4 border-t border-[#e8e3d9] dark:border-[#232d3f]">
-                    {cert.skills.map((s, idx) => (
-                      <span
-                        key={idx}
-                        className="px-2.5 py-0.5 rounded-md text-[11px] font-mono bg-[#faf8f5] dark:bg-[#1a2233] text-[#131312] dark:text-[#f3f4f6] border border-[#e8e3d9] dark:border-[#232d3f]"
-                      >
-                        {s}
-                      </span>
-                    ))}
-                  </div>
+                  {/* Description */}
+                  <p className="text-xs sm:text-sm text-[#8e8e99] leading-relaxed mb-4">
+                    {cert.description}
+                  </p>
                 </div>
 
-                {/* Card Footer */}
-                <div className="mt-5 pt-3.5 border-t border-[#e8e3d9] dark:border-[#232d3f] flex items-center justify-between text-xs text-[#676561] dark:text-[#94a3b8]">
-                  <span className="flex items-center gap-1.5 text-emerald-600 dark:text-emerald-400 font-mono font-medium">
-                    <CheckCircle className="w-3.5 h-3.5" />
-                    Verified Credential
+                {/* Footer Validation Strip */}
+                <div className="pt-4 border-t border-white/10 flex items-center justify-between text-xs font-mono text-[#a1a1aa]">
+                  <span className="flex items-center gap-1.5 text-[#ff2222]">
+                    <ShieldCheck className="w-3.5 h-3.5" />
+                    <span>Verified</span>
                   </span>
-                  <span className="font-mono text-[11px] text-[#676561] dark:text-[#94a3b8]">
-                    CERT // {String(index + 1).padStart(2, "0")}
-                  </span>
+                  <span className="text-[#52525b]">{cert.credentialId ? `ID: ${cert.credentialId.slice(0, 10)}...` : "Completed"}</span>
                 </div>
               </TiltCard>
             </motion.div>
           ))}
-        </motion.div>
+        </div>
 
       </div>
     </section>

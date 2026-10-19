@@ -1,102 +1,105 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { GraduationCap, MapPin, Calendar } from "lucide-react";
+import { GraduationCap, MapPin, Calendar, Award } from "lucide-react";
 import { education } from "../data/portfolioData";
-import { easeSkillClass, staggerContainer, staggerCard } from "../utils/motion";
 
 export default function Education() {
   return (
-    <section id="education" className="py-20 md:py-28 relative">
+    <section id="education" data-scene="Education" className="py-24 md:py-32 relative bg-[#070709] text-[#f5f5f7]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Header — SkillClass Editorial Tag & Heading */}
+        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.1 }}
-          transition={{ duration: 0.7, ease: easeSkillClass }}
+          transition={{ duration: 0.6 }}
           className="flex flex-col items-center text-center mb-16"
         >
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white dark:bg-[#141a26] border border-[#e8e3d9] dark:border-[#232d3f] text-[#fe5922] dark:text-[#38bdf8] text-xs font-mono uppercase tracking-widest mb-4 shadow-sm">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#111118] border border-white/10 text-[#ff2222] text-xs font-mono uppercase tracking-widest mb-4">
             <GraduationCap className="w-3.5 h-3.5" />
-            <span>Academic Background</span>
+            <span>05.1 // ACADEMIC FOUNDATION</span>
           </div>
 
-          <h2 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-[#131312] dark:text-white tracking-tight max-w-3xl leading-[1.12]">
-            Academic degrees.{" "}
-            <span className="font-editorial-italic font-normal text-[#fe5922] dark:text-[#38bdf8]">
-              Proven discipline.
+          <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight max-w-3xl leading-[1.1]">
+            Academic milestones.{" "}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#ff2222] to-[#ff6666]">
+              Consistent high performance.
             </span>
           </h2>
           
-          <p className="text-[#5e5d59] dark:text-[#94a3b8] max-w-xl text-sm sm:text-base mt-3">
-            Academic qualifications demonstrating consistent academic discipline and computer applications expertise.
+          <p className="text-[#8e8e99] max-w-xl text-sm sm:text-base mt-4 font-sans leading-relaxed">
+            Verified academic qualifications in Computer Applications and Business Administration.
           </p>
         </motion.div>
 
         {/* Education Cards Grid */}
-        <motion.div
-          variants={staggerContainer(0.12, 0.1)}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.1 }}
-          className="max-w-4xl mx-auto space-y-6"
-        >
+        <div className="max-w-4xl mx-auto space-y-6">
           {education.map((item, index) => (
             <motion.div
               key={index}
-              variants={staggerCard}
-              whileHover={{ y: -4, scale: 1.01 }}
-              transition={{ duration: 0.25, ease: easeSkillClass }}
-              className="sc-card p-7 sm:p-9 space-y-5 cursor-default"
+              initial={{ opacity: 0, y: 25 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.1 }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+              className="rb-card p-7 sm:p-9 space-y-5"
             >
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-5 border-b border-[#e8e3d9] dark:border-[#232d3f]">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-5 border-b border-white/10">
                 <div>
                   <div className="flex items-center gap-2.5 mb-2 flex-wrap">
-                    <span className="px-3 py-0.5 rounded-full text-xs font-mono font-semibold bg-[#faf8f5] dark:bg-[#1f2838] border border-[#e8e3d9] dark:border-[#232d3f] text-[#131312] dark:text-[#f3f4f6]">
+                    <span className="px-3 py-1 rounded-full text-xs font-mono font-semibold bg-[#ff2222]/15 text-[#ff2222] border border-[#ff2222]/30">
                       {item.statusBadge}
                     </span>
-                    <span className="text-xs font-mono text-[#676561] dark:text-[#94a3b8] flex items-center gap-1.5">
-                      <Calendar className="w-3.5 h-3.5" />
+                    <span className="text-xs font-mono text-[#a1a1aa] flex items-center gap-1.5">
+                      <Calendar className="w-3.5 h-3.5 text-[#ff2222]" />
                       {item.period}
                     </span>
                   </div>
 
-                  <h3 className="text-2xl sm:text-3xl font-bold text-[#131312] dark:text-white">
+                  <h3 className="text-2xl sm:text-3xl font-black text-white">
                     {item.degree}
                   </h3>
 
-                  <div className="text-sm font-semibold text-[#fe5922] dark:text-[#38bdf8] mt-1">
-                    {item.institution}
-                  </div>
-
-                  <div className="text-xs text-[#676561] dark:text-[#94a3b8] flex items-center gap-1.5 mt-1 font-mono">
-                    <MapPin className="w-3.5 h-3.5" />
-                    {item.location}
+                  <div className="flex items-center gap-2 text-sm font-mono text-[#8e8e99] mt-1.5 flex-wrap">
+                    <span className="text-white font-medium">{item.institution}</span>
+                    <span>•</span>
+                    <span className="flex items-center gap-1">
+                      <MapPin className="w-3.5 h-3.5 text-[#ff2222]" />
+                      {item.location}
+                    </span>
                   </div>
                 </div>
 
-                {/* Score Pill */}
-                <motion.div
-                  whileHover={{ scale: 1.05 }}
-                  transition={{ type: "spring", stiffness: 350 }}
-                  className="self-start sm:self-center px-5 py-3 rounded-2xl bg-white dark:bg-[#1a2233] border border-[#e8e3d9] dark:border-[#232d3f] text-center shadow-sm"
-                >
-                  <div className="text-[10px] uppercase tracking-wider text-[#676561] dark:text-[#94a3b8] font-mono">
-                    Grade Score
+                {/* Score Badge */}
+                <div className="sm:text-right shrink-0">
+                  <div className="inline-flex flex-col sm:items-end">
+                    <span className="text-xs font-mono text-[#71717a] uppercase">{item.scoreLabel}</span>
+                    <span className="text-2xl sm:text-3xl font-mono font-black text-[#ff2222]">
+                      {item.score}
+                    </span>
                   </div>
-                  <div className="text-2xl font-extrabold text-[#131312] dark:text-white font-mono">
-                    {item.cgpa} <span className="text-xs font-semibold text-[#fe5922] dark:text-[#38bdf8]">CGPA</span>
-                  </div>
-                </motion.div>
+                </div>
               </div>
 
-              <p className="text-sm sm:text-base text-[#5e5d59] dark:text-[#94a3b8] leading-relaxed">
+              {/* Description */}
+              <p className="text-sm sm:text-base text-[#a1a1aa] leading-relaxed font-sans">
                 {item.description}
               </p>
+
+              {/* Highlights */}
+              <div className="pt-4 border-t border-white/10 flex flex-wrap gap-2">
+                {item.highlights?.map((hl, hIdx) => (
+                  <span
+                    key={hIdx}
+                    className="px-3 py-1 rounded-md text-xs font-mono bg-black/60 border border-white/10 text-[#d4d4d8]"
+                  >
+                    {hl}
+                  </span>
+                ))}
+              </div>
             </motion.div>
           ))}
-        </motion.div>
+        </div>
 
       </div>
     </section>

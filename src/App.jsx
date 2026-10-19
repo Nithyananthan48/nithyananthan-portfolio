@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import ParticleBackground from "./components/ParticleBackground";
 import Navbar from "./components/Navbar";
-import Hero from "./sections/Hero";
+import SplitHero from "./sections/SplitHero";
+import Ticker from "./components/Ticker";
 import About from "./sections/About";
 import Capabilities from "./sections/Capabilities";
 import Skills from "./sections/Skills";
@@ -12,56 +13,73 @@ import Certifications from "./sections/Certifications";
 import FAQ from "./sections/FAQ";
 import Contact from "./sections/Contact";
 import Footer from "./components/Footer";
-import Ticker from "./components/Ticker";
+import ReelDock from "./components/ReelDock";
+import { useInfiniteReel } from "./hooks/useInfiniteReel";
 
 export default function App() {
-  const [isDark, setIsDark] = useState(() => {
-    const saved = localStorage.getItem("nithya_portfolio_theme");
-    if (saved) return saved === "dark";
-    return false; // Default Warm Light Linen Theme as inspired by SkillClass
-  });
-
-  useEffect(() => {
-    if (isDark) {
-      document.documentElement.classList.add("dark");
-      localStorage.setItem("nithya_portfolio_theme", "dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-      localStorage.setItem("nithya_portfolio_theme", "light");
-    }
-  }, [isDark]);
-
-  const toggleTheme = () => {
-    setIsDark((prev) => !prev);
-  };
+  const {
+    scenes,
+    activeSceneIndex,
+    currentScene,
+    isLooping,
+    toggleLoop,
+    scrollToScene,
+  } = useInfiniteReel();
 
   return (
-    <div className={`min-h-screen relative transition-colors duration-300 ${
-      isDark ? "bg-[#0c1017] text-[#f3f4f6]" : "bg-[#faf8f5] text-[#131312]"
-    }`}>
-      {/* Background Interactive Ambient Grid */}
-      <ParticleBackground isDark={isDark} />
+    <div className="min-h-screen relative bg-[#070709] text-[#f5f5f7] selection:bg-[#ff2222] selection:text-white">
+      {/* Background Interactive Ambient Matrix */}
+      <ParticleBackground />
 
-      {/* Sticky Floating Navbar */}
-      <Navbar isDark={isDark} onToggleTheme={toggleTheme} />
+      {/* Fixed Sticky Header Navbar */}
+      <Navbar />
 
-      {/* Main Content Sections */}
-      <main className="relative z-10">
-        <Hero isDark={isDark} />
+      {/* Main Continuous Reel Container (Inspired by Reference 2 #reel) */}
+      <main id="reel" className="relative z-10 pb-16">
+        {/* Scene 01: Split Screen Hero (Inspired by Reference 1 Split Screen) */}
+        <SplitHero />
+
+        {/* High-Tech Infinite Marquee Ticker */}
         <Ticker />
+
+        {/* Scene 02: About the Developer */}
         <About />
+
+        {/* Engineering Lifecycle Pipeline */}
         <Capabilities />
+
+        {/* Scene 03: Technical Skill Matrix */}
         <Skills />
-        <Experience />
+
+        {/* Scene 04: Featured Projects & Code Showcase */}
         <Projects />
+
+        {/* Scene 05: Professional Experience */}
+        <Experience />
+
+        {/* Academic Degrees & Milestone Credentials */}
         <Education />
         <Certifications />
+
+        {/* Common Queries / FAQ */}
         <FAQ />
+
+        {/* Scene 06: Transmission Channel / Contact */}
         <Contact />
+
+        {/* Colophon & Footer */}
+        <Footer />
       </main>
 
-      {/* Footer */}
-      <Footer />
+      {/* Persistent Bottom Reel Dock (Inspired by Reference 2) */}
+      <ReelDock
+        scenes={scenes}
+        activeSceneIndex={activeSceneIndex}
+        currentScene={currentScene}
+        isLooping={isLooping}
+        onToggleLoop={toggleLoop}
+        onSelectScene={scrollToScene}
+      />
     </div>
   );
 }

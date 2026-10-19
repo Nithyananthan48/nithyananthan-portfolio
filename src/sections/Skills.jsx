@@ -6,10 +6,10 @@ import {
   Database, 
   Wrench, 
   Cpu, 
-  ShieldCheck
+  ShieldCheck,
+  Sparkles
 } from "lucide-react";
 import { skillCategories } from "../data/portfolioData";
-import { easeSkillClass, staggerContainer, staggerCard } from "../utils/motion";
 
 const categoryIconMap = {
   frontend: Code,
@@ -33,144 +33,118 @@ export default function Skills() {
     : skillCategories.filter((c) => c.id === activeTab);
 
   return (
-    <section id="skills" className="py-20 md:py-28 relative">
+    <section id="skills" data-scene="Skills" className="py-24 md:py-32 relative bg-[#070709] text-[#f5f5f7]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Header — SkillClass Scroll Reveal */}
+        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.1 }}
-          transition={{ duration: 0.7, ease: easeSkillClass }}
+          transition={{ duration: 0.6 }}
           className="flex flex-col items-center text-center mb-16"
         >
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white dark:bg-[#141a26] border border-[#e8e3d9] dark:border-[#232d3f] text-[#fe5922] dark:text-[#38bdf8] text-xs font-mono uppercase tracking-widest mb-4 shadow-sm">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#111118] border border-white/10 text-[#ff2222] text-xs font-mono uppercase tracking-widest mb-4">
             <Cpu className="w-3.5 h-3.5" />
-            <span>Technical Toolkit</span>
+            <span>03 // CORE TECHNICAL MATRIX</span>
           </div>
 
-          <h2 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-[#131312] dark:text-white tracking-tight max-w-3xl leading-[1.12]">
-            Every tool for the stack.{" "}
-            <span className="font-editorial-italic font-normal text-[#fe5922] dark:text-[#38bdf8]">
-              Organized & verified.
+          <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight max-w-3xl leading-[1.1]">
+            Verified full-stack toolset.{" "}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#ff2222] to-[#ff6666]">
+              Modern &amp; battle-tested.
             </span>
           </h2>
           
-          <p className="text-[#5e5d59] dark:text-[#94a3b8] max-w-xl text-sm sm:text-base mt-3">
-            Practical skills verified through my academic coursework, Nitroware Technologies internship, and independent full-stack implementations.
+          <p className="text-[#8e8e99] max-w-xl text-sm sm:text-base mt-4 font-sans leading-relaxed">
+            Practical skills verified through academic coursework, Nitroware Technologies internship, and independent full-stack deployments.
           </p>
         </motion.div>
 
-        {/* Category Filter Tabs — Animated Pill Switching */}
+        {/* Category Filter Tabs */}
         <div className="flex items-center justify-center gap-2 flex-wrap mb-14">
           {categories.map((cat) => {
             const isSelected = activeTab === cat.id;
             return (
-              <motion.button
+              <button
                 key={cat.id}
                 type="button"
                 onClick={() => setActiveTab(cat.id)}
-                whileHover={{ y: -2 }}
-                whileTap={{ scale: 0.96 }}
-                transition={{ duration: 0.18 }}
-                className={`relative px-4 py-2 rounded-full text-xs sm:text-sm font-medium transition-colors cursor-pointer ${
+                className={`relative px-4 py-2 rounded-full text-xs sm:text-sm font-mono font-medium transition-all cursor-pointer ${
                   isSelected
-                    ? "text-white dark:text-[#131312] font-semibold"
-                    : "bg-white/80 dark:bg-[#141a26]/80 text-[#5e5d59] dark:text-[#94a3b8] hover:text-[#131312] dark:hover:text-white border border-[#e8e3d9] dark:border-[#232d3f]"
+                    ? "bg-[#ff2222] text-white font-bold shadow-[0_0_15px_rgba(255,34,34,0.4)]"
+                    : "bg-[#111118] text-[#8e8e99] hover:text-white border border-white/10 hover:border-white/20"
                 }`}
               >
-                {isSelected && (
-                  <motion.div
-                    layoutId="activeSkillTabPill"
-                    className="absolute inset-0 rounded-full bg-[#131312] dark:bg-white -z-10 shadow-sm"
-                    transition={{ type: "spring", stiffness: 380, damping: 28 }}
-                  />
-                )}
                 {cat.name}
-              </motion.button>
+              </button>
             );
           })}
         </div>
 
-        {/* Skill Cards by Category with AnimatePresence */}
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={activeTab}
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.35, ease: easeSkillClass }}
-            className="space-y-12"
-          >
+        {/* Skill Cards by Category */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <AnimatePresence mode="popLayout">
             {displayedCategories.map((category) => {
-              const IconComponent = categoryIconMap[category.id] || Code;
+              const IconComp = categoryIconMap[category.id] || Cpu;
               return (
-                <div key={category.id} className="space-y-5">
-                  
-                  {/* Category Subheader */}
-                  <div className="flex items-center justify-between border-b border-[#e8e3d9] dark:border-[#232d3f] pb-3.5">
-                    <div className="flex items-center gap-3">
-                      <div className="w-8 h-8 rounded-lg bg-white dark:bg-[#1f2838] border border-[#e8e3d9] dark:border-[#232d3f] flex items-center justify-center text-[#fe5922] dark:text-[#38bdf8]">
-                        <IconComponent className="w-4 h-4" />
-                      </div>
-                      <div>
-                        <h3 className="text-lg sm:text-xl font-bold text-[#131312] dark:text-white">
+                <motion.div
+                  key={category.id}
+                  layout
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.95 }}
+                  transition={{ duration: 0.3 }}
+                  className="rb-card p-6 sm:p-7 flex flex-col justify-between"
+                >
+                  <div>
+                    {/* Category Title */}
+                    <div className="flex items-center justify-between pb-4 mb-5 border-b border-white/10">
+                      <div className="flex items-center gap-3">
+                        <div className="p-2.5 rounded-xl bg-[#ff2222]/10 border border-[#ff2222]/30 text-[#ff2222]">
+                          <IconComp className="w-5 h-5" />
+                        </div>
+                        <h3 className="font-bold text-white text-lg font-mono">
                           {category.name}
                         </h3>
-                        <p className="text-xs text-[#676561] dark:text-[#94a3b8] font-mono mt-0.5">
-                          {category.description}
-                        </p>
                       </div>
+                      <span className="text-xs font-mono text-[#71717a]">
+                        {category.skills.length} skills
+                      </span>
                     </div>
-                    <span className="text-xs font-mono text-[#676561] dark:text-[#94a3b8] px-2.5 py-1 rounded-full bg-white dark:bg-[#141a26] border border-[#e8e3d9] dark:border-[#232d3f]">
-                      {category.skills.length} competencies
-                    </span>
-                  </div>
 
-                  {/* Skill Grid with Staggered Scroll Reveal */}
-                  <motion.div
-                    variants={staggerContainer(0.06, 0.05)}
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true, amount: 0.1 }}
-                    className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"
-                  >
-                    {category.skills.map((skill, idx) => (
-                      <motion.div
-                        key={idx}
-                        variants={staggerCard}
-                        whileHover={{ y: -3, scale: 1.01 }}
-                        transition={{ duration: 0.2, ease: easeSkillClass }}
-                        className="sc-card p-5 flex items-center justify-between group cursor-default"
-                      >
-                        <div className="flex items-center gap-3.5">
-                          <motion.div
-                            whileHover={{ scale: 1.15, rotate: 6 }}
-                            transition={{ type: "spring", stiffness: 350 }}
-                            className="w-10 h-10 rounded-xl bg-[#faf8f5] dark:bg-[#1a2233] border border-[#e8e3d9] dark:border-[#232d3f] flex items-center justify-center text-[#131312] dark:text-white shadow-2xs"
-                          >
-                            <IconComponent className="w-5 h-5 text-[#fe5922] dark:text-[#38bdf8]" />
-                          </motion.div>
-                          <div>
-                            <div className="text-sm font-bold text-[#131312] dark:text-white group-hover:text-[#fe5922] dark:group-hover:text-[#38bdf8] transition-colors">
-                              {skill.name}
-                            </div>
-                            <div className="text-[11px] font-mono text-[#676561] dark:text-[#94a3b8] mt-0.5">
-                              {skill.tag}
-                            </div>
+                    {/* Skill List with Progress Bars */}
+                    <div className="space-y-4">
+                      {category.skills.map((skill, sIdx) => (
+                        <div key={sIdx} className="space-y-1.5">
+                          <div className="flex items-center justify-between text-xs font-mono">
+                            <span className="text-white font-medium">{skill.name}</span>
+                            <span className="text-[#a1a1aa]">{skill.level}%</span>
+                          </div>
+                          <div className="w-full h-1.5 bg-black/60 rounded-full overflow-hidden border border-white/5">
+                            <motion.div
+                              initial={{ width: 0 }}
+                              whileInView={{ width: `${skill.level}%` }}
+                              viewport={{ once: true }}
+                              transition={{ duration: 0.8, delay: sIdx * 0.05 }}
+                              className="h-full bg-gradient-to-r from-[#ff2222] to-[#ff6666] rounded-full"
+                            />
                           </div>
                         </div>
+                      ))}
+                    </div>
+                  </div>
 
-                        <div className="w-2 h-2 rounded-full bg-emerald-500 opacity-60 group-hover:opacity-100 transition-opacity" />
-                      </motion.div>
-                    ))}
-                  </motion.div>
-
-                </div>
+                  {/* Bottom tagline */}
+                  <div className="pt-5 mt-6 border-t border-white/5 flex items-center justify-between text-[11px] font-mono text-[#71717a]">
+                    <span>STATUS: PRODUCTION-READY</span>
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#ff2222]" />
+                  </div>
+                </motion.div>
               );
             })}
-          </motion.div>
-        </AnimatePresence>
+          </AnimatePresence>
+        </div>
 
       </div>
     </section>
