@@ -12,6 +12,7 @@ import Certifications from "./sections/Certifications";
 import FAQ from "./sections/FAQ";
 import Contact from "./sections/Contact";
 import Footer from "./components/Footer";
+import Ticker from "./components/Ticker";
 
 export default function App() {
   const [isDark, setIsDark] = useState(() => {
@@ -46,7 +47,8 @@ export default function App() {
 
       {/* Main Content Sections */}
       <main className="relative z-10">
-        <Hero />
+        <Hero isDark={isDark} />
+        <Ticker />
         <About />
         <Capabilities />
         <Skills />

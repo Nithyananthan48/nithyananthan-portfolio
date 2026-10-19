@@ -1,6 +1,8 @@
 import React from "react";
-import { GraduationCap, Award, MapPin, Calendar, CheckCircle2 } from "lucide-react";
+import { motion } from "framer-motion";
+import { GraduationCap, MapPin, Calendar } from "lucide-react";
 import { education } from "../data/portfolioData";
+import { easeSkillClass, staggerContainer, staggerCard } from "../utils/motion";
 
 export default function Education() {
   return (
@@ -8,7 +10,13 @@ export default function Education() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header — SkillClass Editorial Tag & Heading */}
-        <div className="flex flex-col items-center text-center mb-16">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.1 }}
+          transition={{ duration: 0.7, ease: easeSkillClass }}
+          className="flex flex-col items-center text-center mb-16"
+        >
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white dark:bg-[#141a26] border border-[#e8e3d9] dark:border-[#232d3f] text-[#fe5922] dark:text-[#38bdf8] text-xs font-mono uppercase tracking-widest mb-4 shadow-sm">
             <GraduationCap className="w-3.5 h-3.5" />
             <span>Academic Background</span>
@@ -24,14 +32,23 @@ export default function Education() {
           <p className="text-[#5e5d59] dark:text-[#94a3b8] max-w-xl text-sm sm:text-base mt-3">
             Academic qualifications demonstrating consistent academic discipline and computer applications expertise.
           </p>
-        </div>
+        </motion.div>
 
         {/* Education Cards Grid */}
-        <div className="max-w-4xl mx-auto space-y-6">
+        <motion.div
+          variants={staggerContainer(0.12, 0.1)}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
+          className="max-w-4xl mx-auto space-y-6"
+        >
           {education.map((item, index) => (
-            <div
+            <motion.div
               key={index}
-              className="sc-card p-7 sm:p-9 space-y-5"
+              variants={staggerCard}
+              whileHover={{ y: -4, scale: 1.01 }}
+              transition={{ duration: 0.25, ease: easeSkillClass }}
+              className="sc-card p-7 sm:p-9 space-y-5 cursor-default"
             >
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-5 border-b border-[#e8e3d9] dark:border-[#232d3f]">
                 <div>
@@ -60,22 +77,26 @@ export default function Education() {
                 </div>
 
                 {/* Score Pill */}
-                <div className="self-start sm:self-center px-5 py-3 rounded-2xl bg-white dark:bg-[#1a2233] border border-[#e8e3d9] dark:border-[#232d3f] text-center shadow-sm">
+                <motion.div
+                  whileHover={{ scale: 1.05 }}
+                  transition={{ type: "spring", stiffness: 350 }}
+                  className="self-start sm:self-center px-5 py-3 rounded-2xl bg-white dark:bg-[#1a2233] border border-[#e8e3d9] dark:border-[#232d3f] text-center shadow-sm"
+                >
                   <div className="text-[10px] uppercase tracking-wider text-[#676561] dark:text-[#94a3b8] font-mono">
                     Grade Score
                   </div>
                   <div className="text-2xl font-extrabold text-[#131312] dark:text-white font-mono">
                     {item.cgpa} <span className="text-xs font-semibold text-[#fe5922] dark:text-[#38bdf8]">CGPA</span>
                   </div>
-                </div>
+                </motion.div>
               </div>
 
               <p className="text-sm sm:text-base text-[#5e5d59] dark:text-[#94a3b8] leading-relaxed">
                 {item.description}
               </p>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
 
       </div>
     </section>

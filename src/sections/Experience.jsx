@@ -1,6 +1,8 @@
 import React from "react";
-import { Briefcase, Calendar, MapPin, CheckCircle2, Building, Terminal, ArrowRight } from "lucide-react";
+import { motion } from "framer-motion";
+import { Briefcase, MapPin, CheckCircle2, Building } from "lucide-react";
 import { experience } from "../data/portfolioData";
+import { easeSkillClass, fadeUp } from "../utils/motion";
 
 export default function Experience() {
   return (
@@ -8,7 +10,13 @@ export default function Experience() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header — SkillClass Editorial Tag & Heading */}
-        <div className="flex flex-col items-center text-center mb-16">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.1 }}
+          transition={{ duration: 0.7, ease: easeSkillClass }}
+          className="flex flex-col items-center text-center mb-16"
+        >
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white dark:bg-[#141a26] border border-[#e8e3d9] dark:border-[#232d3f] text-[#fe5922] dark:text-[#38bdf8] text-xs font-mono uppercase tracking-widest mb-4 shadow-sm">
             <Briefcase className="w-3.5 h-3.5" />
             <span>Professional Experience</span>
@@ -24,14 +32,19 @@ export default function Experience() {
           <p className="text-[#5e5d59] dark:text-[#94a3b8] max-w-xl text-sm sm:text-base mt-3">
             Practical full-stack web application development and collaborative team engineering.
           </p>
-        </div>
+        </motion.div>
 
         {/* Experience Timeline Card */}
         <div className="max-w-4xl mx-auto">
           {experience.map((exp, index) => (
-            <div
+            <motion.div
               key={index}
-              className="sc-card p-7 sm:p-10 space-y-7 relative overflow-hidden"
+              initial={{ opacity: 0, y: 35 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.1 }}
+              transition={{ duration: 0.75, ease: easeSkillClass }}
+              whileHover={{ y: -4 }}
+              className="sc-card p-7 sm:p-10 space-y-7 relative overflow-hidden transition-shadow"
             >
               {/* Top Accent Strip */}
               <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-[#fe5922] via-[#0284c7] to-[#8b5cf6]" />
@@ -84,10 +97,17 @@ export default function Experience() {
                 </h4>
                 <div className="space-y-2.5">
                   {exp.highlights.map((h, i) => (
-                    <div key={i} className="flex items-start gap-3 text-xs sm:text-sm text-[#131312] dark:text-[#f3f4f6]">
+                    <motion.div
+                      key={i}
+                      initial={{ opacity: 0, x: -10 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: 0.2 + i * 0.08, duration: 0.4 }}
+                      className="flex items-start gap-3 text-xs sm:text-sm text-[#131312] dark:text-[#f3f4f6]"
+                    >
                       <CheckCircle2 className="w-4 h-4 text-[#fe5922] dark:text-[#38bdf8] shrink-0 mt-0.5" />
                       <span>{h}</span>
-                    </div>
+                    </motion.div>
                   ))}
                 </div>
               </div>
@@ -96,17 +116,19 @@ export default function Experience() {
               <div className="pt-2">
                 <div className="flex flex-wrap gap-2">
                   {exp.technologies.map((t, idx) => (
-                    <span
+                    <motion.span
                       key={idx}
-                      className="px-3 py-1 rounded-lg text-xs font-mono bg-[#faf8f5] dark:bg-[#1a2233] text-[#131312] dark:text-[#f3f4f6] border border-[#e8e3d9] dark:border-[#232d3f]"
+                      whileHover={{ y: -2 }}
+                      transition={{ duration: 0.15 }}
+                      className="px-3 py-1 rounded-lg text-xs font-mono bg-[#faf8f5] dark:bg-[#1a2233] text-[#131312] dark:text-[#f3f4f6] border border-[#e8e3d9] dark:border-[#232d3f] cursor-default"
                     >
                       {t}
-                    </span>
+                    </motion.span>
                   ))}
                 </div>
               </div>
 
-            </div>
+            </motion.div>
           ))}
         </div>
 

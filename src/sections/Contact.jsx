@@ -1,18 +1,16 @@
 import React, { useState } from "react";
+import { motion } from "framer-motion";
 import { 
   Mail, 
-  FileDown, 
   Send, 
   Check, 
   Copy, 
-  Sparkles,
   Phone,
-  MapPin,
-  ArrowRight,
-  ExternalLink
+  MapPin
 } from "lucide-react";
 import { GithubIcon, LinkedinIcon, WhatsappIcon } from "../components/Icons";
 import { personalInfo } from "../data/portfolioData";
+import { easeSkillClass } from "../utils/motion";
 
 export default function Contact() {
   const [copied, setCopied] = useState(false);
@@ -34,7 +32,6 @@ export default function Contact() {
     e.preventDefault();
     if (!formState.email || !formState.message) return;
 
-    // Trigger user's mail client transparently with prefilled fields
     const mailtoSubject = encodeURIComponent(
       formState.subject || `Full Stack Developer Inquiry from ${formState.name || "Recruiter"}`
     );
@@ -50,8 +47,14 @@ export default function Contact() {
     <section id="contact" className="py-20 md:py-28 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Header — SkillClass Editorial Tag & Heading */}
-        <div className="flex flex-col items-center text-center mb-16">
+        {/* Header — SkillClass Editorial Reveal */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.1 }}
+          transition={{ duration: 0.7, ease: easeSkillClass }}
+          className="flex flex-col items-center text-center mb-16"
+        >
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white dark:bg-[#141a26] border border-[#e8e3d9] dark:border-[#232d3f] text-[#fe5922] dark:text-[#38bdf8] text-xs font-mono uppercase tracking-widest mb-4 shadow-sm">
             <Mail className="w-3.5 h-3.5" />
             <span>Get in Touch</span>
@@ -67,23 +70,34 @@ export default function Contact() {
           <p className="text-[#5e5d59] dark:text-[#94a3b8] max-w-xl text-sm sm:text-base mt-3">
             Open for Junior Full Stack Developer and Frontend Developer opportunities. Let’s talk about how I can contribute to your team.
           </p>
-        </div>
+        </motion.div>
 
         {/* 2-Column Layout matching SkillClass Reservation / Contact section */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 max-w-6xl mx-auto">
           
           {/* Left Column: Direct Info Cards */}
-          <div className="lg:col-span-5 space-y-4">
+          <motion.div
+            initial={{ opacity: 0, x: -25 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.1 }}
+            transition={{ duration: 0.7, ease: easeSkillClass }}
+            className="lg:col-span-5 space-y-4"
+          >
             
             {/* Direct Email Card */}
-            <div className="sc-card p-6 space-y-3">
+            <motion.div
+              whileHover={{ y: -3 }}
+              transition={{ duration: 0.25, ease: easeSkillClass }}
+              className="sc-card p-6 space-y-3 cursor-default"
+            >
               <div className="flex items-center justify-between">
                 <span className="text-xs font-mono uppercase tracking-wider text-[#676561] dark:text-[#94a3b8] font-semibold">
                   Direct Email
                 </span>
-                <button
+                <motion.button
                   type="button"
                   onClick={handleCopyEmail}
+                  whileTap={{ scale: 0.92 }}
                   className="inline-flex items-center gap-1.5 text-xs text-[#fe5922] dark:text-[#38bdf8] hover:underline font-mono cursor-pointer"
                 >
                   {copied ? (
@@ -97,7 +111,7 @@ export default function Contact() {
                       <span>Copy</span>
                     </>
                   )}
-                </button>
+                </motion.button>
               </div>
 
               <a
@@ -107,17 +121,24 @@ export default function Contact() {
                 {personalInfo.email}
               </a>
 
-              <a
+              <motion.a
                 href={`mailto:${personalInfo.email}`}
+                whileHover={{ y: -2, scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                transition={{ duration: 0.2, ease: easeSkillClass }}
                 className="sc-btn-primary w-full text-xs py-2.5"
               >
                 <Mail className="w-4 h-4" />
                 <span>Send Direct Email</span>
-              </a>
-            </div>
+              </motion.a>
+            </motion.div>
 
             {/* Phone & WhatsApp Card */}
-            <div className="sc-card p-6 space-y-3">
+            <motion.div
+              whileHover={{ y: -3 }}
+              transition={{ duration: 0.25, ease: easeSkillClass }}
+              className="sc-card p-6 space-y-3 cursor-default"
+            >
               <div className="text-xs font-mono uppercase tracking-wider text-[#676561] dark:text-[#94a3b8] font-semibold">
                 Phone & Instant Chat
               </div>
@@ -127,28 +148,36 @@ export default function Contact() {
               </div>
 
               <div className="flex items-center gap-2 pt-1">
-                <a
+                <motion.a
                   href={`tel:${personalInfo.phone}`}
+                  whileHover={{ y: -2 }}
+                  whileTap={{ scale: 0.98 }}
                   className="sc-btn-secondary flex-1 text-xs py-2.5"
                 >
                   <Phone className="w-3.5 h-3.5" />
                   <span>Call Now</span>
-                </a>
+                </motion.a>
 
-                <a
+                <motion.a
                   href={personalInfo.whatsappUrl}
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex items-center justify-center gap-1.5 flex-1 py-2.5 px-4 rounded-full text-xs font-semibold bg-emerald-600 hover:bg-emerald-500 text-white transition-all shadow-sm"
+                  whileHover={{ y: -2, scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="inline-flex items-center justify-center gap-1.5 flex-1 py-2.5 px-4 rounded-full text-xs font-semibold bg-emerald-600 hover:bg-emerald-500 text-white transition-colors shadow-sm"
                 >
                   <WhatsappIcon className="w-3.5 h-3.5" />
                   <span>WhatsApp</span>
-                </a>
+                </motion.a>
               </div>
-            </div>
+            </motion.div>
 
             {/* Location & Social Links Card */}
-            <div className="sc-card p-6 space-y-4">
+            <motion.div
+              whileHover={{ y: -3 }}
+              transition={{ duration: 0.25, ease: easeSkillClass }}
+              className="sc-card p-6 space-y-4 cursor-default"
+            >
               <div className="flex items-start gap-3">
                 <div className="w-10 h-10 rounded-xl bg-white dark:bg-[#1a2233] border border-[#e8e3d9] dark:border-[#232d3f] flex items-center justify-center text-[#fe5922] dark:text-[#38bdf8] shrink-0 shadow-sm">
                   <MapPin className="w-5 h-5" />
@@ -164,32 +193,42 @@ export default function Contact() {
               </div>
 
               <div className="pt-3 border-t border-[#e8e3d9] dark:border-[#232d3f] flex items-center gap-3">
-                <a
+                <motion.a
                   href={personalInfo.githubUrl}
                   target="_blank"
                   rel="noreferrer"
+                  whileHover={{ y: -2 }}
+                  whileTap={{ scale: 0.96 }}
                   className="sc-btn-secondary flex-1 text-xs py-2"
                 >
                   <GithubIcon className="w-3.5 h-3.5" />
                   <span>GitHub</span>
-                </a>
+                </motion.a>
 
-                <a
+                <motion.a
                   href={personalInfo.linkedinUrl}
                   target="_blank"
                   rel="noreferrer"
+                  whileHover={{ y: -2 }}
+                  whileTap={{ scale: 0.96 }}
                   className="sc-btn-secondary flex-1 text-xs py-2"
                 >
                   <LinkedinIcon className="w-3.5 h-3.5 text-blue-600" />
                   <span>LinkedIn</span>
-                </a>
+                </motion.a>
               </div>
-            </div>
+            </motion.div>
 
-          </div>
+          </motion.div>
 
           {/* Right Column: SkillClass Reservation-style Contact Form */}
-          <div className="lg:col-span-7">
+          <motion.div
+            initial={{ opacity: 0, x: 25 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.1 }}
+            transition={{ duration: 0.7, ease: easeSkillClass }}
+            className="lg:col-span-7"
+          >
             <div className="sc-card p-7 sm:p-9 space-y-6">
               
               <div>
@@ -263,24 +302,31 @@ export default function Contact() {
                   ></textarea>
                 </div>
 
-                {/* Submit button */}
-                <button
+                {/* Submit button with micro-interaction */}
+                <motion.button
                   type="submit"
+                  whileHover={{ y: -2, scale: 1.01 }}
+                  whileTap={{ scale: 0.98 }}
+                  transition={{ duration: 0.2, ease: easeSkillClass }}
                   className="sc-btn-primary w-full cursor-pointer py-3.5"
                 >
                   <Send className="w-4 h-4" />
                   <span>Send Message via Email Client</span>
-                </button>
+                </motion.button>
 
                 {formSubmitted && (
-                  <div className="p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-xs text-emerald-700 dark:text-emerald-400 font-medium text-center">
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-xs text-emerald-700 dark:text-emerald-400 font-medium text-center"
+                  >
                     Email client launched! You can also email directly at <strong>{personalInfo.email}</strong>.
-                  </div>
+                  </motion.div>
                 )}
               </form>
 
             </div>
-          </div>
+          </motion.div>
 
         </div>
 

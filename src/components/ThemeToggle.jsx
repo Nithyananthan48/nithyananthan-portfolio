@@ -1,23 +1,44 @@
 import React from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { Sun, Moon } from "lucide-react";
+import { springSnappy } from "../utils/motion";
 
 export default function ThemeToggle({ isDark, onToggle }) {
   return (
-    <button
+    <motion.button
       type="button"
       onClick={onToggle}
+      whileHover={{ scale: 1.05 }}
+      whileTap={{ scale: 0.92 }}
       aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
-      className="relative p-2.5 rounded-xl border transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-cyan-500/50 bg-slate-900/60 dark:bg-slate-800/80 border-slate-700/60 dark:border-slate-700 hover:border-cyan-500/50 text-slate-300 hover:text-cyan-400 cursor-pointer shadow-sm group"
+      className="relative p-2 rounded-full border border-[#e8e3d9] dark:border-[#232d3f] bg-white/80 dark:bg-[#141a26]/80 text-[#131312] dark:text-white hover:border-[#131312] dark:hover:border-white transition-colors cursor-pointer shadow-xs focus:outline-none"
     >
-      <div className="relative w-5 h-5 flex items-center justify-center">
-        {isDark ? (
-          <Sun className="w-5 h-5 text-amber-400 transition-transform duration-300 group-hover:rotate-45" />
-        ) : (
-          <Moon className="w-5 h-5 text-cyan-600 transition-transform duration-300 group-hover:-rotate-12" />
-        )}
+      <div className="relative w-5 h-5 flex items-center justify-center overflow-hidden">
+        <AnimatePresence mode="wait" initial={false}>
+          {isDark ? (
+            <motion.div
+              key="sun"
+              initial={{ rotate: -90, scale: 0, opacity: 0 }}
+              animate={{ rotate: 0, scale: 1, opacity: 1 }}
+              exit={{ rotate: 90, scale: 0, opacity: 0 }}
+              transition={springSnappy}
+            >
+              <Sun className="w-4 h-4 text-amber-400" />
+            </motion.div>
+          ) : (
+            <motion.div
+              key="moon"
+              initial={{ rotate: 90, scale: 0, opacity: 0 }}
+              animate={{ rotate: 0, scale: 1, opacity: 1 }}
+              exit={{ rotate: -90, scale: 0, opacity: 0 }}
+              transition={springSnappy}
+            >
+              <Moon className="w-4 h-4 text-[#131312]" />
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
       <span className="sr-only">Toggle theme</span>
-    </button>
+    </motion.button>
   );
 }
-

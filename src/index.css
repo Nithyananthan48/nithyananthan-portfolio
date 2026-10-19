@@ -155,6 +155,15 @@ html.dark .gradient-text-blue {
   }
 }
 
+@keyframes floatSlowReverse {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(8px) rotate(-0.5deg);
+  }
+}
+
 @keyframes pulseSubtle {
   0%, 100% {
     opacity: 0.15;
@@ -166,12 +175,58 @@ html.dark .gradient-text-blue {
   }
 }
 
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
 .animate-float-slow {
   animation: floatSlow 6s ease-in-out infinite;
 }
 
+.animate-float-slow-reverse {
+  animation: floatSlowReverse 7s ease-in-out infinite;
+}
+
 .animate-pulse-subtle {
   animation: pulseSubtle 8s ease-in-out infinite;
+}
+
+.sc-ticker-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 38s linear infinite;
+}
+
+@keyframes floatSubtle {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-float {
+  animation: floatSubtle 4.5s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .animate-float-slow,
+  .animate-float-slow-reverse,
+  .animate-float {
+    animation: none;
+  }
+  .sc-ticker-track {
+    animation-duration: 90s;
+  }
 }
 
 /* SkillClass Button Styles */

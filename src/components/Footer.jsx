@@ -1,7 +1,10 @@
 import React from "react";
-import { ArrowUp, Mail, FileDown, Heart } from "lucide-react";
+import { motion } from "framer-motion";
+import { ArrowUp, Mail, FileDown } from "lucide-react";
 import { GithubIcon, LinkedinIcon, WhatsappIcon } from "./Icons";
+import RollingText from "./RollingText";
 import { personalInfo } from "../data/portfolioData";
+import { easeSkillClass } from "../utils/motion";
 
 export default function Footer() {
   const scrollToTop = () => {
@@ -24,7 +27,13 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Top Row: Brand & Quick Navigation */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 pb-12 border-b border-[#e8e3d9] dark:border-[#232d3f]">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, ease: easeSkillClass }}
+          className="grid grid-cols-1 md:grid-cols-12 gap-8 pb-12 border-b border-[#e8e3d9] dark:border-[#232d3f]"
+        >
           
           {/* Brand Info */}
           <div className="md:col-span-5 space-y-3">
@@ -42,40 +51,48 @@ export default function Footer() {
             </p>
 
             <div className="pt-1 flex items-center gap-2.5">
-              <a
+              <motion.a
                 href={personalInfo.githubUrl}
                 target="_blank"
                 rel="noreferrer"
+                whileHover={{ y: -3, scale: 1.08 }}
+                whileTap={{ scale: 0.92 }}
                 className="p-2 rounded-full bg-[#faf8f5] dark:bg-[#141a26] border border-[#e8e3d9] dark:border-[#232d3f] text-[#131312] dark:text-white hover:text-[#fe5922] dark:hover:text-[#38bdf8] transition-colors"
                 aria-label="GitHub"
               >
                 <GithubIcon className="w-4 h-4" />
-              </a>
-              <a
+              </motion.a>
+              <motion.a
                 href={personalInfo.linkedinUrl}
                 target="_blank"
                 rel="noreferrer"
+                whileHover={{ y: -3, scale: 1.08 }}
+                whileTap={{ scale: 0.92 }}
                 className="p-2 rounded-full bg-[#faf8f5] dark:bg-[#141a26] border border-[#e8e3d9] dark:border-[#232d3f] text-[#131312] dark:text-white hover:text-[#fe5922] dark:hover:text-[#38bdf8] transition-colors"
                 aria-label="LinkedIn"
               >
                 <LinkedinIcon className="w-4 h-4" />
-              </a>
-              <a
+              </motion.a>
+              <motion.a
                 href={`mailto:${personalInfo.email}`}
+                whileHover={{ y: -3, scale: 1.08 }}
+                whileTap={{ scale: 0.92 }}
                 className="p-2 rounded-full bg-[#faf8f5] dark:bg-[#141a26] border border-[#e8e3d9] dark:border-[#232d3f] text-[#131312] dark:text-white hover:text-[#fe5922] dark:hover:text-[#38bdf8] transition-colors"
                 aria-label="Email"
               >
                 <Mail className="w-4 h-4" />
-              </a>
-              <a
+              </motion.a>
+              <motion.a
                 href={personalInfo.whatsappUrl}
                 target="_blank"
                 rel="noreferrer"
+                whileHover={{ y: -3, scale: 1.08 }}
+                whileTap={{ scale: 0.92 }}
                 className="p-2 rounded-full bg-[#faf8f5] dark:bg-[#141a26] border border-[#e8e3d9] dark:border-[#232d3f] text-[#131312] dark:text-white hover:text-[#fe5922] dark:hover:text-[#38bdf8] transition-colors"
                 aria-label="WhatsApp"
               >
                 <WhatsappIcon className="w-4 h-4" />
-              </a>
+              </motion.a>
             </div>
           </div>
 
@@ -84,14 +101,14 @@ export default function Footer() {
             <div className="text-xs font-mono uppercase tracking-wider text-[#676561] dark:text-[#94a3b8] font-bold mb-3">
               Sections
             </div>
-            <div className="grid grid-cols-2 gap-2 text-xs">
+            <div className="grid grid-cols-2 gap-2.5 text-xs">
               {navLinks.map((link) => (
                 <a
                   key={link.label}
                   href={link.href}
-                  className="text-[#5e5d59] dark:text-[#94a3b8] hover:text-[#131312] dark:hover:text-white transition-colors"
+                  className="group inline-flex items-center text-[#5e5d59] dark:text-[#94a3b8] hover:text-[#131312] dark:hover:text-white transition-colors py-0.5"
                 >
-                  {link.label}
+                  <RollingText text={link.label} />
                 </a>
               ))}
             </div>
@@ -106,27 +123,30 @@ export default function Footer() {
               <p className="text-xs text-[#5e5d59] dark:text-[#94a3b8]">
                 Updated Oct 2026 version
               </p>
-              <a
+              <motion.a
                 href={personalInfo.resumePath}
                 download="Nithyananthan_Full_Stack_Developer_Resume.pdf"
+                whileHover={{ y: -2, scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
                 className="sc-btn-primary text-xs py-2 px-4 inline-flex mt-1"
               >
                 <FileDown className="w-3.5 h-3.5" />
                 <span>Download Resume</span>
-              </a>
+              </motion.a>
             </div>
 
-            <button
+            <motion.button
               type="button"
               onClick={scrollToTop}
-              className="mt-6 inline-flex items-center gap-1.5 text-xs font-mono text-[#676561] dark:text-[#94a3b8] hover:text-[#131312] dark:hover:text-white transition-colors cursor-pointer"
+              whileHover={{ y: -2 }}
+              className="mt-6 inline-flex items-center gap-1.5 text-xs font-mono text-[#676561] dark:text-[#94a3b8] hover:text-[#131312] dark:hover:text-white transition-colors cursor-pointer group"
             >
               <span>Back to Top</span>
-              <ArrowUp className="w-3.5 h-3.5" />
-            </button>
+              <ArrowUp className="w-3.5 h-3.5 transition-transform group-hover:-translate-y-1" />
+            </motion.button>
           </div>
 
-        </div>
+        </motion.div>
 
         {/* Bottom Copyright Row */}
         <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#676561] dark:text-[#94a3b8]">
@@ -134,7 +154,7 @@ export default function Footer() {
             © {new Date().getFullYear()} {personalInfo.name}. All verified rights reserved.
           </div>
           <div className="font-mono text-[11px]">
-            Designed with SkillClass aesthetic · Built with React & Tailwind CSS
+            Designed with SkillClass aesthetic · Framer Motion smooth animations
           </div>
         </div>
 

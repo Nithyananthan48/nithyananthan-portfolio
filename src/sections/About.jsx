@@ -1,23 +1,38 @@
 import React from "react";
+import { motion } from "framer-motion";
 import { 
   GraduationCap, 
   Briefcase, 
   Code2, 
   Award, 
   CheckCircle2, 
-  MapPin, 
   Sparkles,
   ArrowRight
 } from "lucide-react";
 import { personalInfo, stats } from "../data/portfolioData";
+import { easeSkillClass, fadeUp, staggerContainer, staggerCard } from "../utils/motion";
+import TiltCard from "../components/TiltCard";
 
 export default function About() {
   return (
     <section id="about" className="py-20 md:py-28 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Section Header — SkillClass Editorial Tag & Heading */}
-        <div className="flex flex-col items-center text-center mb-16">
+        {/* Section Header — Scroll-Triggered Reveal */}
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
+          variants={{
+            hidden: { opacity: 0, y: 30 },
+            visible: {
+              opacity: 1,
+              y: 0,
+              transition: { duration: 0.7, ease: easeSkillClass },
+            },
+          }}
+          className="flex flex-col items-center text-center mb-16"
+        >
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white dark:bg-[#141a26] border border-[#e8e3d9] dark:border-[#232d3f] text-[#fe5922] dark:text-[#38bdf8] text-xs font-mono uppercase tracking-widest mb-4 shadow-sm">
             <Sparkles className="w-3.5 h-3.5" />
             <span>Meet the Developer</span>
@@ -33,13 +48,19 @@ export default function About() {
           <p className="text-[#5e5d59] dark:text-[#94a3b8] max-w-xl text-sm sm:text-base mt-3">
             MCA fresher and aspiring Full Stack Developer committed to clean architecture, modern frameworks, and responsive user experiences.
           </p>
-        </div>
+        </motion.div>
 
         {/* Content Layout: Narrative Card + Stats Showcase */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           
-          {/* Left Column: Narrative & Values */}
-          <div className="lg:col-span-7 space-y-6">
+          {/* Left Column: Narrative Card */}
+          <motion.div
+            initial={{ opacity: 0, y: 32 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.1 }}
+            transition={{ duration: 0.75, ease: easeSkillClass }}
+            className="lg:col-span-7 space-y-6"
+          >
             <div className="sc-card p-6 sm:p-9 space-y-5">
               
               <div className="space-y-3">
@@ -67,63 +88,81 @@ export default function About() {
 
               {/* Core Attributes Checklist */}
               <div className="pt-5 border-t border-[#e8e3d9] dark:border-[#232d3f] grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-                <div className="flex items-center gap-2.5 text-xs sm:text-sm text-[#131312] dark:text-[#f3f4f6]">
-                  <CheckCircle2 className="w-4 h-4 text-[#fe5922] dark:text-[#38bdf8] shrink-0" />
-                  <span className="font-medium">React.js & Responsive Frontend Craft</span>
-                </div>
-                <div className="flex items-center gap-2.5 text-xs sm:text-sm text-[#131312] dark:text-[#f3f4f6]">
-                  <CheckCircle2 className="w-4 h-4 text-[#fe5922] dark:text-[#38bdf8] shrink-0" />
-                  <span className="font-medium">Node.js, Express & RESTful APIs</span>
-                </div>
-                <div className="flex items-center gap-2.5 text-xs sm:text-sm text-[#131312] dark:text-[#f3f4f6]">
-                  <CheckCircle2 className="w-4 h-4 text-[#fe5922] dark:text-[#38bdf8] shrink-0" />
-                  <span className="font-medium">MongoDB (NoSQL) & MySQL (Relational)</span>
-                </div>
-                <div className="flex items-center gap-2.5 text-xs sm:text-sm text-[#131312] dark:text-[#f3f4f6]">
-                  <CheckCircle2 className="w-4 h-4 text-[#fe5922] dark:text-[#38bdf8] shrink-0" />
-                  <span className="font-medium">Git Version Control & Teamwork</span>
-                </div>
+                {[
+                  "React.js & Responsive Frontend Craft",
+                  "Node.js, Express & RESTful APIs",
+                  "MongoDB (NoSQL) & MySQL (Relational)",
+                  "Git Version Control & Teamwork",
+                ].map((item, idx) => (
+                  <motion.div
+                    key={idx}
+                    initial={{ opacity: 0, x: -10 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.3 + idx * 0.08, duration: 0.4 }}
+                    className="flex items-center gap-2.5 text-xs sm:text-sm text-[#131312] dark:text-[#f3f4f6]"
+                  >
+                    <CheckCircle2 className="w-4 h-4 text-[#fe5922] dark:text-[#38bdf8] shrink-0" />
+                    <span className="font-medium">{item}</span>
+                  </motion.div>
+                ))}
               </div>
 
             </div>
-          </div>
+          </motion.div>
 
-          {/* Right Column: Stats & Milestones */}
-          <div className="lg:col-span-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-4">
-            
+          {/* Right Column: Staggered Stats Cards */}
+          <motion.div
+            variants={staggerContainer(0.1, 0.1)}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.1 }}
+            className="lg:col-span-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-4"
+          >
             {stats.map((item, idx) => (
-              <div
+              <motion.div
                 key={idx}
-                className="sc-card p-6 flex items-center justify-between gap-4"
+                variants={staggerCard}
+                className="h-full"
               >
-                <div>
-                  <div className="text-xs font-mono uppercase tracking-wider text-[#676561] dark:text-[#94a3b8] font-semibold">
-                    {item.label}
+                <TiltCard
+                  maxTilt={8}
+                  className="sc-card p-6 flex items-center justify-between gap-4 cursor-default h-full"
+                >
+                  <div>
+                    <div className="text-xs font-mono uppercase tracking-wider text-[#676561] dark:text-[#94a3b8] font-semibold">
+                      {item.label}
+                    </div>
+                    <div className="text-3xl font-extrabold text-[#131312] dark:text-white font-mono mt-1">
+                      {item.value}
+                    </div>
+                    <div className="text-xs text-[#a64025] dark:text-[#38bdf8] font-semibold mt-1">
+                      {item.sub}
+                    </div>
                   </div>
-                  <div className="text-3xl font-extrabold text-[#131312] dark:text-white font-mono mt-1">
-                    {item.value}
-                  </div>
-                  <div className="text-xs text-[#a64025] dark:text-[#38bdf8] font-semibold mt-1">
-                    {item.sub}
-                  </div>
-                </div>
 
-                <div className="w-12 h-12 rounded-2xl bg-white dark:bg-[#1f2838] border border-[#e8e3d9] dark:border-[#232d3f] flex items-center justify-center text-[#131312] dark:text-white shrink-0 shadow-sm">
-                  {idx === 0 ? (
-                    <GraduationCap className="w-6 h-6 text-[#fe5922] dark:text-[#38bdf8]" />
-                  ) : idx === 1 ? (
-                    <Award className="w-6 h-6 text-[#0284c7] dark:text-[#38bdf8]" />
-                  ) : idx === 2 ? (
-                    <Briefcase className="w-6 h-6 text-emerald-600 dark:text-emerald-400" />
-                  ) : (
-                    <Code2 className="w-6 h-6 text-purple-600 dark:text-purple-400" />
-                  )}
-                </div>
-              </div>
+                  <div className="w-12 h-12 rounded-2xl bg-white dark:bg-[#1f2838] border border-[#e8e3d9] dark:border-[#232d3f] flex items-center justify-center text-[#131312] dark:text-white shrink-0 shadow-sm">
+                    {idx === 0 ? (
+                      <GraduationCap className="w-6 h-6 text-[#fe5922] dark:text-[#38bdf8]" />
+                    ) : idx === 1 ? (
+                      <Award className="w-6 h-6 text-[#0284c7] dark:text-[#38bdf8]" />
+                    ) : idx === 2 ? (
+                      <Briefcase className="w-6 h-6 text-emerald-600 dark:text-emerald-400" />
+                    ) : (
+                      <Code2 className="w-6 h-6 text-purple-600 dark:text-purple-400" />
+                    )}
+                  </div>
+                </TiltCard>
+              </motion.div>
             ))}
 
             {/* Quick Action Pill */}
-            <div className="sc-card p-6 flex flex-col justify-between space-y-4 bg-gradient-to-br from-[#fe5922]/5 to-transparent dark:from-[#38bdf8]/5">
+            <motion.div
+              variants={staggerCard}
+              whileHover={{ y: -3 }}
+              transition={{ duration: 0.25, ease: easeSkillClass }}
+              className="sc-card p-6 flex flex-col justify-between space-y-4 bg-gradient-to-br from-[#fe5922]/5 to-transparent dark:from-[#38bdf8]/5 cursor-default"
+            >
               <div>
                 <div className="text-xs font-mono uppercase tracking-wider text-[#a64025] dark:text-[#38bdf8] font-bold">
                   Next Step
@@ -136,18 +175,20 @@ export default function About() {
                 </p>
               </div>
 
-              <a
+              <motion.a
                 href={personalInfo.resumePath}
                 target="_blank"
                 rel="noopener noreferrer"
+                whileHover={{ x: 3 }}
+                transition={{ duration: 0.2 }}
                 className="inline-flex items-center gap-2 text-xs font-bold text-[#131312] dark:text-white hover:text-[#fe5922] dark:hover:text-[#38bdf8] transition-colors"
               >
                 <span>Read Official Resume (PDF)</span>
                 <ArrowRight className="w-3.5 h-3.5" />
-              </a>
-            </div>
+              </motion.a>
+            </motion.div>
 
-          </div>
+          </motion.div>
 
         </div>
 
