@@ -2,7 +2,6 @@ import React from "react";
 import CreativeNav from "./components/CreativeNav";
 import CreativeHero from "./sections/CreativeHero";
 import Ticker from "./components/Ticker";
-import CreativeAbout from "./sections/CreativeAbout";
 import CreativeSkills from "./sections/CreativeSkills";
 import CreativeProjects from "./sections/CreativeProjects";
 import CreativeResume from "./sections/CreativeResume";
@@ -17,25 +16,22 @@ export default function App() {
 
       {/* Main Content Reel */}
       <main className="relative z-10">
-        {/* Page 1: Hero with Pointer Crosshair & Kinetic Typography */}
+        {/* Page 1: Hero with Introduction, CTAs & Profile Picture */}
         <CreativeHero />
 
         {/* High-Impact Infinite Marquee Ticker */}
         <Ticker />
 
-        {/* Page 2: About the Developer, Education & Workflow */}
-        <CreativeAbout />
-
-        {/* Page 3: Technical Matrix & Core Competencies */}
+        {/* Page 2: Technical Skills Matrix & Categorized Competencies */}
         <CreativeSkills />
 
-        {/* Page 4: Projects with Signature Expanding Brackets [ ... ] */}
+        {/* Page 3: Verified Projects Section */}
         <CreativeProjects />
 
-        {/* Page 5: Verified Resume & 9 Industry Certifications */}
+        {/* Page 4: Verified Resume, Education, Internship & 9 Industry Certifications */}
         <CreativeResume />
 
-        {/* Page 6: 3-Column Contact Grid & Transmission Terminal */}
+        {/* Page 5: Direct Contact Channels & Verification */}
         <CreativeContact />
       </main>
 

@@ -14,7 +14,7 @@ export const personalInfo = {
   linkedinUrl: "https://linkedin.com/in/nithyananthan959794",
   portfolioUrl: "https://nithyananthan-portfolio.vercel.app/",
   resumePath: "/assets/Nithyananthan_Full_Stack_Developer_Resume.pdf",
-  profileImage: "/assets/profile.jpg",
+  profileImage: "/assets/IMG_20240819_200730_886.jpg",
   avatarImage: "/assets/IMG_20240819_200730_886.jpg",
 };
 

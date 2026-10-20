@@ -86,11 +86,11 @@ export default function CreativeResume() {
               </div>
             </div>
 
-            <div className="space-y-3">
+            <div id="experience" className="space-y-3 scroll-mt-28">
               <span className="font-mono text-xs text-[#71717a] uppercase tracking-wider block">
                 // Industry Internship
               </span>
-              <div className="p-3 rounded-lg bg-white/[0.02] border border-white/5 space-y-1.5">
+              <div className="p-3.5 rounded-lg bg-white/[0.02] border border-white/5 space-y-2">
                 <div className="flex items-center justify-between text-xs font-mono">
                   <span className="text-white font-semibold">{experience[0].role}</span>
                 </div>
@@ -98,8 +98,15 @@ export default function CreativeResume() {
                   {experience[0].company} · {experience[0].duration}
                 </div>
                 <p className="text-[11px] text-[#8e8e98] leading-relaxed">
-                  Web development, feature implementation, and collaborative bug resolution.
+                  {experience[0].description}
                 </p>
+                <div className="flex flex-wrap gap-1 pt-1">
+                  {experience[0].technologies.slice(0, 4).map((tech) => (
+                    <span key={tech} className="text-[9px] font-mono px-1.5 py-0.5 rounded bg-white/5 text-[#a1a1aa]">
+                      {tech}
+                    </span>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
